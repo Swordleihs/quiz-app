@@ -2,3 +2,4 @@ Ontwerp principes
 Ontwerp patronen
 UML
 Java extra's
+Overig
