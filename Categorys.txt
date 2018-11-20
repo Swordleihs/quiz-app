@@ -1,0 +1,4 @@
+Ontwerp principes
+Ontwerp patronen
+UML
+Java extra's
