@@ -1,5 +1,5 @@
-Ontwerp principes
-Ontwerp patronen
-UML
-Java extra's
-Overig
+Ontwerp principes;Description blabla
+Ontwerp patronen;Description bloebloe
+UML;Descripion klakla
+Java extra's;Carla kaka;Ontwerp principes
+Overig;Dat is wat backy wil!
