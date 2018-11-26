@@ -11,11 +11,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CategoryDB {
-    private ArrayList<Category> categories;
     private File f;
 
     public CategoryDB(){
-        categories = new ArrayList<>();
         f = new File("Categories.txt");
         if (f.isDirectory() || !f.exists()) {
             throw new dbException("File niet gevonden");
