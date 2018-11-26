@@ -1,5 +1,7 @@
 package view.panels;
 
+import domain.model.Category;
+import domain.model.Question;
 import javafx.geometry.Pos;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
