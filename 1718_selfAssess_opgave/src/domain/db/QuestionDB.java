@@ -60,7 +60,9 @@ public class QuestionDB {
     }
 
     public ArrayList<Question> getAll(){
-        return (ArrayList<Question>)questions;
+        ArrayList<Question> res = new ArrayList<>();
+        res.addAll(questions);
+        return res;
     }
 
     public void addQuestion(String qu, String fe, String[] st, String ca, int po){

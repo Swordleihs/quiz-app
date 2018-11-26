@@ -60,14 +60,18 @@ public class CategoryDB {
     }
 
     public ArrayList<Category> getAll(){
-        return (ArrayList<Category>)categories;
+        ArrayList<Category> res = new ArrayList<>();
+        res.addAll(categories);
+        return res;
     }
 
     public void addCategory(String name, String desc, String superr){
-        categories.add(new Category(name, desc, superr));
+        if(superr.equals("Geen")) {
+            categories.add(new Category(name, desc));
+        }else{
+            categories.add(new Category(name, desc, superr));
+        }
     }
 
-    public void addCategory(String name, String desc){
-        categories.add(new Category(name, desc));
-    }
+
 }

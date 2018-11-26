@@ -1,5 +1,7 @@
 package view.panels;
 
+import domain.Controller.TesterController;
+import domain.model.Category;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,8 +16,10 @@ public class CategoryDetailPane extends GridPane {
 	private Button btnOK, btnCancel;
 	private TextField titleField, descriptionField;
 	private ComboBox categoryField;
+	private TesterController t;
 
-	public CategoryDetailPane() {
+	public CategoryDetailPane(TesterController t) {
+		this.t = t;
 		this.setPrefHeight(150);
 		this.setPrefWidth(300);
 		
@@ -33,6 +37,11 @@ public class CategoryDetailPane extends GridPane {
 
 		this.add(new Label("Main Category:"), 0, 2, 1, 1);
 		categoryField = new ComboBox<>();
+		categoryField.getItems().add("Geen");
+		for(Category c: t.getCategories()){
+			categoryField.getItems().add(c.getName());
+		}
+		categoryField.setValue("Geen");
 		this.add(categoryField, 1, 2, 1, 1);
 
 		btnCancel = new Button("Cancel");
@@ -44,6 +53,16 @@ public class CategoryDetailPane extends GridPane {
 
 		btnOK = new Button("Save");
 		btnOK.isDefaultButton();
+		btnOK.setOnAction((e) -> {
+			try {
+				this.t.addCategory(titleField.getText(), descriptionField.getText(), categoryField.getValue().toString());
+				titleField.setText("");
+				descriptionField.setText("");
+				System.out.println(this.t.toString());
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
+		});
 		this.add(btnOK, 1, 3, 1, 1);
 	}
 
