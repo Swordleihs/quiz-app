@@ -1,4 +1,5 @@
-package domain.model;
+package view.panels;
 
 public interface Observer {
+
 }

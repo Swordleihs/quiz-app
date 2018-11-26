@@ -2,17 +2,19 @@ package domain.db;
 
 import domain.Exceptions.*;
 import domain.model.Question;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class QuestionDB {
-    private ArrayList<Question> questions;
+    private ObservableList<Question> questions;
     private File f;
 
     public QuestionDB(){
-        questions = new ArrayList<>();
+        questions = FXCollections.observableArrayList(new ArrayList<Question>());
         f = new File("Questions.txt");
         if (f.isDirectory() || !f.exists()) {
             throw new dbException("File niet gevonden");
