@@ -2,8 +2,6 @@ package domain.model;
 
 import domain.Exceptions.DomainException;
 
-import java.sql.Statement;
-
 public class Question {
     private String question, feedback;
     private String[] statements;
