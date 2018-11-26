@@ -13,7 +13,7 @@ public class QuestionDB {
 
     public QuestionDB(){
         questions = new ArrayList<>();
-        f = new File("1718_selfAssess_opgave/Questions.txt");
+        f = new File("Questions.txt");
         if (f.isDirectory() || !f.exists()) {
             throw new dbException("File niet gevonden");
         }
