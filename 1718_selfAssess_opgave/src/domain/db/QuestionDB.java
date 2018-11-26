@@ -56,4 +56,8 @@ public class QuestionDB {
         }
         return res;
     }
+
+    public ArrayList<Question> getAll(){
+        return (ArrayList<Question>)questions;
+    }
 }
