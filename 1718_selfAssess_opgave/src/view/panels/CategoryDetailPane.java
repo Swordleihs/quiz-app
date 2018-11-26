@@ -37,6 +37,8 @@ public class CategoryDetailPane extends GridPane {
 
 		btnCancel = new Button("Cancel");
 		btnCancel.setOnAction((e) -> {
+			Stage stage = (Stage) this.getScene().getWindow();
+			stage.close();
 		});
 		this.add(btnCancel, 0, 3, 1, 1);
 

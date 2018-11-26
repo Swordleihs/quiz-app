@@ -11,7 +11,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 
 public class CategoryOverviewPane extends GridPane {
@@ -38,7 +40,16 @@ public class CategoryOverviewPane extends GridPane {
 		btnNew = new Button("New");
 		btnNew.setOnAction(e -> {
 			CategoryDetailPane addCatPane = new CategoryDetailPane();
-			this.getChildren().add(addCatPane);
+            Stage addCatStage = new Stage();
+
+            Group root = new Group();
+            Scene scene = new Scene(root, 300, 200);
+
+
+            root.getChildren().add(addCatPane);
+            addCatStage.setScene(scene);
+            addCatStage.sizeToScene();
+            addCatStage.show();
 		});
 		this.add(btnNew, 0, 12, 1, 1);
 	}
