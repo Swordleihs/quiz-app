@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class CategoryDetailPane extends GridPane {
 	private Button btnOK, btnCancel;
@@ -35,6 +36,8 @@ public class CategoryDetailPane extends GridPane {
 		this.add(categoryField, 1, 2, 1, 1);
 
 		btnCancel = new Button("Cancel");
+		btnCancel.setOnAction((e) -> {
+		});
 		this.add(btnCancel, 0, 3, 1, 1);
 
 		btnOK = new Button("Save");

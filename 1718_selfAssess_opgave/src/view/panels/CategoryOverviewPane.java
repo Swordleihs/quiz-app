@@ -3,6 +3,8 @@ package view.panels;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -21,7 +23,7 @@ public class CategoryOverviewPane extends GridPane {
         this.setVgap(5);
         this.setHgap(5);
         
-		this.add(new Label("Categories:"), 0, 0, 1, 1);
+		this.add(new Label("Categories:"), 0, 1, 1, 1);
 		
 		table = new TableView<>();
 		table.setPrefWidth(REMAINING);
@@ -31,10 +33,14 @@ public class CategoryOverviewPane extends GridPane {
         TableColumn descriptionCol = new TableColumn<>("Description");
         descriptionCol.setCellValueFactory(new PropertyValueFactory("description"));
         table.getColumns().add(descriptionCol);
-		this.add(table, 0, 1, 2, 6);
+		this.add(table, 0, 2, 2, 6);
 		
 		btnNew = new Button("New");
-		this.add(btnNew, 0, 11, 1, 1);
+		btnNew.setOnAction(e -> {
+			CategoryDetailPane addCatPane = new CategoryDetailPane();
+			this.getChildren().add(addCatPane);
+		});
+		this.add(btnNew, 0, 12, 1, 1);
 	}
 	
 	public void setNewAction(EventHandler<ActionEvent> newAction) {

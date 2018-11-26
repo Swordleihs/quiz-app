@@ -21,4 +21,15 @@ public class TesterController {
                 questiondb.toString();
         return res;
     }
+
+    public void addCategory(String name, String description, String superr){
+        categorydb.addCategory(name, description, superr);
+    }
+    public void addCategory(String name, String description){
+        categorydb.addCategory(name, description);
+    }
+
+    public void addQuestion(String qu, String fe, String[] st, String ca, int po){
+        questiondb.addQuestion(qu, fe, st, ca, po);
+    }
 }

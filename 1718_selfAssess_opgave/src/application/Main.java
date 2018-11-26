@@ -1,5 +1,6 @@
 package application;
 
+import domain.Controller.TesterController;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -18,6 +19,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 
 		try {
+			TesterController t = new TesterController();
+			System.out.println(t.toString());
 			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane();
 			QuestionDetailPane questionDetailPane = new QuestionDetailPane();
 

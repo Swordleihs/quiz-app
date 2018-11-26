@@ -62,4 +62,8 @@ public class QuestionDB {
     public ArrayList<Question> getAll(){
         return (ArrayList<Question>)questions;
     }
+
+    public void addQuestion(String qu, String fe, String[] st, String ca, int po){
+        questions.add(new Question(qu, fe, st, ca, po));
+    }
 }

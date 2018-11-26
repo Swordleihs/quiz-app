@@ -62,4 +62,12 @@ public class CategoryDB {
     public ArrayList<Category> getAll(){
         return (ArrayList<Category>)categories;
     }
+
+    public void addCategory(String name, String desc, String superr){
+        categories.add(new Category(name, desc, superr));
+    }
+
+    public void addCategory(String name, String desc){
+        categories.add(new Category(name, desc));
+    }
 }
