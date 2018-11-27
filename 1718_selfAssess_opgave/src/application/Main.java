@@ -25,7 +25,7 @@ public class Main extends Application {
 
 			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(t);
 
-			MessagePane messagePane = new MessagePane(testController);
+			MessagePane messagePane = new MessagePane(testController, primaryStage);
 
 			Group root = new Group();
 			Scene scene = new Scene(root, 750, 400);
