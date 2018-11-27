@@ -3,6 +3,8 @@ package view.panels;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.Controller.TesterController;
+import domain.model.Question;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,6 +17,7 @@ public class TestPane extends GridPane {
 	private Label questionField;
 	private Button submitButton;
 	private ToggleGroup statementGroup;
+
 	
 	public TestPane (){
 		this.setPrefHeight(300);
@@ -24,7 +27,7 @@ public class TestPane extends GridPane {
         this.setVgap(5);
         this.setHgap(5);
 
-		questionField = new Label();
+		questionField = new Label("test");
 		add(questionField, 0, 0, 1, 1);
 		
 		statementGroup = new ToggleGroup();

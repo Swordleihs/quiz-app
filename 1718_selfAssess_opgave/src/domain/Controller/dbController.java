@@ -57,4 +57,8 @@ public class dbController {
             return c;
         }
     }
+
+    public ArrayList<Question> getQuestions(){
+        return questiondb.getAll();
+    }
 }
