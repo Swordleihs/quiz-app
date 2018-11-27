@@ -65,6 +65,10 @@ public class QuestionDB {
         return res;
     }
 
+    public ObservableList<Question> getAllObservable(){
+        return this.questions;
+    }
+
     public void addQuestion(String qu, String fe, String[] st, String ca, int po){
         questions.add(new Question(qu, fe, st, ca, po));
     }

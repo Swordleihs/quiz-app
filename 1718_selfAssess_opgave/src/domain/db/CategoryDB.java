@@ -65,6 +65,10 @@ public class CategoryDB {
         return res;
     }
 
+    public ObservableList<Category> getAllObservable(){
+        return this.categories;
+    }
+
     public void addCategory(String name, String desc, String superr){
         if(superr.equals("Geen")) {
             categories.add(new Category(name, desc));

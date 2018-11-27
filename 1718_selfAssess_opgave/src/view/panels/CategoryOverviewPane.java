@@ -33,13 +33,17 @@ public class CategoryOverviewPane extends GridPane {
 		table = new TableView<>();
 		table.setPrefWidth(REMAINING);
         TableColumn nameCol = new TableColumn<>("Name");
-        nameCol.setCellValueFactory(new PropertyValueFactory("title"));
+        nameCol.setCellValueFactory(new PropertyValueFactory("name"));
         table.getColumns().add(nameCol);
         TableColumn descriptionCol = new TableColumn<>("Description");
         descriptionCol.setCellValueFactory(new PropertyValueFactory("description"));
         table.getColumns().add(descriptionCol);
+		TableColumn superCol = new TableColumn<>("Supercategory");
+		superCol.setCellValueFactory(new PropertyValueFactory("supercategory"));
+		table.getColumns().add(superCol);
 		this.add(table, 0, 2, 2, 6);
-		
+		table.setItems(t.getCategoriesObservable());
+
 		btnNew = new Button("New");
 		btnNew.setOnAction(e -> {
 			CategoryDetailPane addCatPane = new CategoryDetailPane(t);

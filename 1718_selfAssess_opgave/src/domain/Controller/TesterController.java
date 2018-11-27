@@ -4,6 +4,8 @@ import domain.Exceptions.DomainException;
 import domain.db.CategoryDB;
 import domain.db.QuestionDB;
 import domain.model.Category;
+import domain.model.Question;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,13 @@ public class TesterController {
         res += categorydb.toString() + "\n\n"+
                 questiondb.toString();
         return res;
+    }
+
+    public ObservableList<Category> getCategoriesObservable(){
+        return categorydb.getAllObservable();
+    }
+    public ObservableList<Question> getQuestionsObservable(){
+        return questiondb.getAllObservable();
     }
 
     public void addCategory(String name, String description, String superr){
