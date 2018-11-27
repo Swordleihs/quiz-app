@@ -24,7 +24,7 @@ public class MessagePane extends GridPane {
 	private Button testButton;
 	private TestController testController;
 	
-	public MessagePane (TestController testController){
+	public MessagePane (TestController testController, Stage mainStage){
 	    this.testController = testController;
 
 	    setBorder(new Border(new BorderStroke(Color.BLACK, 
@@ -36,16 +36,16 @@ public class MessagePane extends GridPane {
 
         testButton = new Button("Evaluate");
         testButton.setOnAction(e -> {
-            TestPane testPane = new TestPane(testController);
-            Stage addCatStage = new Stage();
+            TestPane testPane = new TestPane(this.testController);
+
 
             Group root = new Group();
-            Scene scene = new Scene(root, 300, 200);
+            Scene scene = new Scene(root, 750, 400);
 
             root.getChildren().add(testPane);
-            addCatStage.setScene(scene);
-            addCatStage.sizeToScene();
-            addCatStage.show();
+            mainStage.setScene(scene);
+            mainStage.sizeToScene();
+            mainStage.show();
         });
         add(testButton, 0,1,1,1);
         setHalignment(testButton, HPos.CENTER);
