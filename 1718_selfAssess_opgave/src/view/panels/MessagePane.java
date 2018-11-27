@@ -2,6 +2,7 @@ package view.panels;
 
 import java.util.Observer;
 
+import domain.Controller.TestController;
 import domain.Controller.dbController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,8 +22,11 @@ import javafx.stage.Stage;
 
 public class MessagePane extends GridPane {
 	private Button testButton;
+	private TestController testController;
 	
-	public MessagePane (){
+	public MessagePane (TestController testController){
+	    this.testController = testController;
+
 	    setBorder(new Border(new BorderStroke(Color.BLACK, 
 	            BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
@@ -32,7 +36,7 @@ public class MessagePane extends GridPane {
 
         testButton = new Button("Evaluate");
         testButton.setOnAction(e -> {
-            TestPane testPane = new TestPane();
+            TestPane testPane = new TestPane(testController);
             Stage addCatStage = new Stage();
 
             Group root = new Group();
