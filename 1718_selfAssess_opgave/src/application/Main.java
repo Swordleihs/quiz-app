@@ -21,9 +21,7 @@ public class Main extends Application {
 		try {
 			TesterController t = new TesterController();
 			System.out.println(t.toString());
-			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane();
-			QuestionDetailPane questionDetailPane = new QuestionDetailPane();
-
+			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(t);
 			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(t);
 
 			TestPane testPane = new TestPane();

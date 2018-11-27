@@ -1,5 +1,6 @@
 package view.panels;
 
+import domain.Controller.TesterController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,8 +15,10 @@ import javafx.scene.layout.GridPane;
 public class QuestionOverviewPane extends GridPane {
 	private TableView table;
 	private Button btnNew;
-	
-	public QuestionOverviewPane() {
+	private TesterController t;
+
+	public QuestionOverviewPane(TesterController t) {
+		this.t = t;
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);

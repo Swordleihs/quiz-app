@@ -16,6 +16,21 @@ public class Question {
         setPoints(po);
     }
 
+    public String printStatements(){
+        String res = "[";
+        for(String q: statements){
+            res += q + ";";
+        }
+        res += "]";
+        return res;
+    }
+
+
+
+
+    //=========================================
+    //========== GETTERS AND SETTERS ==========
+    //=========================================
     public String getQuestion() {
         return question;
     }
@@ -36,14 +51,7 @@ public class Question {
         this.feedback = feedback;
     }
 
-    public String printStatements(){
-        String res = "[";
-        for(String q: statements){
-            res += q + ";";
-        }
-        res += "]";
-        return res;
-    }
+
     public String[] getStatements() {
         return statements;
     }

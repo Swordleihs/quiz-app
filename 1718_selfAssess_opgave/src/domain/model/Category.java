@@ -17,6 +17,9 @@ public class Category {
         setSupercategory("-");
     }
 
+    //=========================================
+    //========== GETTERS AND SETTERS ==========
+    //=========================================
     public String getName() {
         return name;
     }
