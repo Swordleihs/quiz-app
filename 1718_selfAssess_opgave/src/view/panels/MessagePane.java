@@ -24,7 +24,6 @@ public class MessagePane extends GridPane {
 	private Button testButton;
 	private TestController testController;
 	
-	public MessagePane (TestController testController, Stage mainStage){
 	    this.testController = testController;
 
 	    setBorder(new Border(new BorderStroke(Color.BLACK, 
