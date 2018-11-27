@@ -57,4 +57,8 @@ public class TesterController {
             return c;
         }
     }
+
+    public ArrayList<Question> getQuestions(){
+        return questiondb.getAll();
+    }
 }
