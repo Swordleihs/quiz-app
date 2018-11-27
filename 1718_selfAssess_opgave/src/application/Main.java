@@ -37,7 +37,6 @@ public class Main extends Application {
 			root.getChildren().add(borderPane);
 			primaryStage.setScene(scene);
 			primaryStage.sizeToScene();
-
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();

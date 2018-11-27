@@ -45,15 +45,15 @@ public class QuestionOverviewPane extends GridPane {
 		btnNew = new Button("New");
 		btnNew.setOnAction(e -> {
 			QuestionDetailPane addQuestionPane = new QuestionDetailPane(this.t);
-			Stage addCatStage = new Stage();
+			Stage addQuestionStage = new Stage();
 
 			Group root = new Group();
 			Scene scene = new Scene(root, 350, 325);
 
 			root.getChildren().add(addQuestionPane);
-			addCatStage.setScene(scene);
-			addCatStage.sizeToScene();
-			addCatStage.show();
+			addQuestionStage.setScene(scene);
+			addQuestionStage.sizeToScene();
+			addQuestionStage.show();
 		});
 		this.add(btnNew, 0, 12, 1, 1);
 	}
