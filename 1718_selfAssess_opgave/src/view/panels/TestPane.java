@@ -3,7 +3,7 @@ package view.panels;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.Controller.TesterController;
+import domain.Controller.dbController;
 import domain.model.Question;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
