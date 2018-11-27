@@ -1,5 +1,6 @@
 package application;
 
+import domain.Controller.TestController;
 import domain.Controller.dbController;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -18,12 +19,13 @@ public class Main extends Application {
 
 		try {
 			dbController t = new dbController();
+			TestController testController = new TestController(t);
+
 			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(t);
 
 			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(t);
 
-			TestPane testPane = new TestPane();
-			MessagePane messagePane = new MessagePane();
+			MessagePane messagePane = new MessagePane(testController);
 
 			Group root = new Group();
 			Scene scene = new Scene(root, 750, 400);

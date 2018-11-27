@@ -3,6 +3,7 @@ package view.panels;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.Controller.TestController;
 import domain.Controller.dbController;
 import domain.model.Question;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 
@@ -18,8 +20,14 @@ public class TestPane extends GridPane {
 	private Button submitButton;
 	private ToggleGroup statementGroup;
 
+	private TestController testController;
+
 	
-	public TestPane (){
+	public TestPane (TestController testController){
+	    this.testController = testController;
+
+	    ArrayList<Question> questions = testController.getQuestions();
+
 		this.setPrefHeight(300);
 		this.setPrefWidth(750);
 		
@@ -27,12 +35,20 @@ public class TestPane extends GridPane {
         this.setVgap(5);
         this.setHgap(5);
 
-		questionField = new Label("test");
+		questionField = new Label(questions.get(0).getQuestion());
 		add(questionField, 0, 0, 1, 1);
-		
-		statementGroup = new ToggleGroup();
+
+        statementGroup = new ToggleGroup();
+
+        int row = 1;
+		for (String s : questions.get(0).getStatements()){
+		    RadioButton radioButton = new RadioButton(s);
+            add(radioButton, 0, row, 1, 1);
+            row++;
+        }
 
 		submitButton = new Button("Submit");
+        add(submitButton, 0, row, 1, 1);
 	}
 	
 	public void setProcessAnswerAction(EventHandler<ActionEvent> processAnswerAction) {
