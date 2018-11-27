@@ -3,10 +3,7 @@ package view.panels;
 import domain.Controller.dbController;
 import domain.model.Category;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -60,7 +57,10 @@ public class CategoryDetailPane extends GridPane {
 				descriptionField.setText("");
 				System.out.println(this.t.toString());
 			}catch(Exception ex){
-				JOptionPane.showMessageDialog(null, ex.getMessage());
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setHeaderText("ERROR");
+				alert.setContentText(ex.getMessage());
+				alert.showAndWait();
 			}
 		});
 		this.add(btnOK, 1, 3, 1, 1);
