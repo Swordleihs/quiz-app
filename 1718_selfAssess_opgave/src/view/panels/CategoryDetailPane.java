@@ -65,13 +65,4 @@ public class CategoryDetailPane extends GridPane {
 		});
 		this.add(btnOK, 1, 3, 1, 1);
 	}
-
-	public void setSaveAction(EventHandler<ActionEvent> saveAction) {
-		btnOK.setOnAction(saveAction);
-	}
-
-	public void setCancelAction(EventHandler<ActionEvent> cancelAction) {
-		btnCancel.setOnAction(cancelAction);
-	}
-
 }

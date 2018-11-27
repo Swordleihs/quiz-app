@@ -1,5 +1,6 @@
 package view.panels;
 
+import domain.Controller.TesterController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -11,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class QuestionDetailPane extends GridPane {
 	private Button btnOK, btnCancel;
@@ -18,8 +20,10 @@ public class QuestionDetailPane extends GridPane {
 	private TextField questionField, statementField, feedbackField;
 	private Button btnAdd, btnRemove;
 	private ComboBox categoryField;
+	private TesterController t;
 
-	public QuestionDetailPane() {
+	public QuestionDetailPane(TesterController t) {
+		this.t = t;
 		this.setPrefHeight(300);
 		this.setPrefWidth(320);
 		
@@ -61,21 +65,26 @@ public class QuestionDetailPane extends GridPane {
 
 		btnCancel = new Button("Cancel");
 		btnCancel.setText("Cancel");
+		btnCancel.setOnAction((e) -> {
+			Stage stage = (Stage) this.getScene().getWindow();
+			stage.close();
+		});
 		add(btnCancel, 0, 11, 1, 1);
 
 		btnOK = new Button("Save");
 		btnOK.isDefaultButton();
 		btnOK.setText("Save");
+		btnOK.setOnAction((e) -> {
+			try {
+
+				questionField.setText("");
+				statementField.setText("");
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
+		});
 		add(btnOK, 1, 11, 2, 1);
 		
-	}
-
-	public void setSaveAction(EventHandler<ActionEvent> saveAction) {
-		btnOK.setOnAction(saveAction);
-	}
-
-	public void setCancelAction(EventHandler<ActionEvent> cancelAction) {
-		btnCancel.setOnAction(cancelAction);
 	}
 
 	class AddStatementListener implements EventHandler<ActionEvent> {
