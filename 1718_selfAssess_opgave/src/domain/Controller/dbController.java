@@ -9,11 +9,11 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
-public class TesterController {
+public class dbController {
     private CategoryDB categorydb;
     private QuestionDB questiondb;
 
-    public TesterController(){
+    public dbController(){
         categorydb = new CategoryDB();
         questiondb = new QuestionDB();
     }

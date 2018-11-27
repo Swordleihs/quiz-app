@@ -1,10 +1,10 @@
 package application;
 
-import domain.Controller.TesterController;
+import domain.Controller.dbController;
 
 public class Tester {
     public static void main(String[] args) {
-        TesterController t = new TesterController();
+        dbController t = new dbController();
         System.out.println(t.toString());
     }
 }

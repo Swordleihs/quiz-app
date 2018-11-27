@@ -1,6 +1,6 @@
 package view.panels;
 
-import domain.Controller.TesterController;
+import domain.Controller.dbController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -18,9 +18,9 @@ import javafx.stage.Stage;
 public class QuestionOverviewPane extends GridPane {
 	private TableView table;
 	private Button btnNew;
-	private TesterController t;
+	private dbController t;
 	
-	public QuestionOverviewPane(TesterController t) {
+	public QuestionOverviewPane(dbController t) {
 		this.t = t;
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
@@ -36,12 +36,15 @@ public class QuestionOverviewPane extends GridPane {
         TableColumn descriptionCol = new TableColumn<>("Category");
         descriptionCol.setCellValueFactory(new PropertyValueFactory("category"));
         table.getColumns().add(descriptionCol);
+		TableColumn pointsCol = new TableColumn<>("Points");
+		pointsCol.setCellValueFactory(new PropertyValueFactory("points"));
+		table.getColumns().add(pointsCol);
 		this.add(table, 0, 1, 2, 6);
 		table.setItems(t.getQuestionsObservable());
 
 		btnNew = new Button("New");
 		btnNew.setOnAction(e -> {
-			QuestionDetailPane addQuestionPane = new QuestionDetailPane(t);
+			QuestionDetailPane addQuestionPane = new QuestionDetailPane(this.t);
 			Stage addCatStage = new Stage();
 
 			Group root = new Group();

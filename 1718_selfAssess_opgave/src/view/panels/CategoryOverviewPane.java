@@ -1,6 +1,6 @@
 package view.panels;
 
-import domain.Controller.TesterController;
+import domain.Controller.dbController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -12,7 +12,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -20,9 +19,9 @@ import javafx.stage.Stage;
 public class CategoryOverviewPane extends GridPane {
 	private TableView table;
 	private Button btnNew;
-	private TesterController t;
+	private dbController t;
 
-	public CategoryOverviewPane(TesterController t) {
+	public CategoryOverviewPane(dbController t) {
 		this.t = t;
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);

@@ -1,16 +1,14 @@
 package application;
 
-import domain.Controller.TesterController;
+import domain.Controller.dbController;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.panels.AssesMainPane;
-import view.panels.CategoryDetailPane;
 import view.panels.CategoryOverviewPane;
 import view.panels.MessagePane;
-import view.panels.QuestionDetailPane;
 import view.panels.QuestionOverviewPane;
 import view.panels.TestPane;
 
@@ -19,7 +17,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 
 		try {
-			TesterController t = new TesterController();
+			dbController t = new dbController();
 			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(t);
 
 			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(t);

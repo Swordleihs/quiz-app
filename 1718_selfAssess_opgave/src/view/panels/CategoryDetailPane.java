@@ -1,9 +1,7 @@
 package view.panels;
 
-import domain.Controller.TesterController;
+import domain.Controller.dbController;
 import domain.model.Category;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -12,13 +10,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+
 public class CategoryDetailPane extends GridPane {
 	private Button btnOK, btnCancel;
 	private TextField titleField, descriptionField;
 	private ComboBox categoryField;
-	private TesterController t;
+	private dbController t;
 
-	public CategoryDetailPane(TesterController t) {
+	public CategoryDetailPane(dbController t) {
 		this.t = t;
 		this.setPrefHeight(150);
 		this.setPrefWidth(300);
@@ -60,7 +60,7 @@ public class CategoryDetailPane extends GridPane {
 				descriptionField.setText("");
 				System.out.println(this.t.toString());
 			}catch(Exception ex){
-				ex.printStackTrace();
+				JOptionPane.showMessageDialog(null, ex.getMessage());
 			}
 		});
 		this.add(btnOK, 1, 3, 1, 1);

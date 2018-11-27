@@ -1,8 +1,7 @@
 package view.panels;
 
-import domain.Controller.TesterController;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import domain.Controller.dbController;
+import domain.model.Category;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -14,15 +13,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.util.ArrayList;
+
 public class QuestionDetailPane extends GridPane {
 	private Button btnOK, btnCancel;
 	private TextArea statementsArea;
-	private TextField questionField, statementField, feedbackField;
+	private TextField questionField, statementField, feedbackField, pointsField;
 	private Button btnAdd, btnRemove;
 	private ComboBox categoryField;
-	private TesterController t;
+	private dbController t;
 
-	public QuestionDetailPane(TesterController t) {
+	public QuestionDetailPane(dbController t) {
 		this.t = t;
 		this.setPrefHeight(300);
 		this.setPrefWidth(320);
@@ -47,21 +49,42 @@ public class QuestionDetailPane extends GridPane {
 
 		Pane addRemove = new HBox();
 		btnAdd = new Button("add");
-		btnAdd.setOnAction(new AddStatementListener());
 		addRemove.getChildren().add(btnAdd);
+		btnAdd.setOnAction((e) -> {
+			if(this.statementField.getText().trim().isEmpty()){
+				statementField.setText("wel iets ingeve he");
+			}else if(this.statementsArea.getText().equals("")){
+				this.statementsArea.setText(this.statementField.getText());
+				this.statementField.setText("");
+			}else{
+				this.statementsArea.setText(
+						this.statementsArea.getText() + "\n" + this.statementField.getText());
+				this.statementField.setText("");
+			}
 
-		btnRemove = new Button("remove");
-		btnRemove.setOnAction(new RemoveStatementListener());
+		});
+
+		btnRemove = new Button("Clear");
+		btnRemove.setOnAction((e) -> {
+			statementsArea.setText("");
+		});
 		addRemove.getChildren().add(btnRemove);
 		add(addRemove, 1, 8, 2, 1);
-
 		add(new Label("Category: "), 0, 9, 1, 1);
 		categoryField = new ComboBox();
 		add(categoryField, 1, 9, 2, 1);
+		for(Category c: t.getCategories()){
+			categoryField.getItems().add(c.getName());
+		}
+		categoryField.setValue("UML");
 
 		add(new Label("Feedback: "), 0, 10, 1, 1);
 		feedbackField = new TextField();
 		add(feedbackField, 1, 10, 2, 1);
+
+		add(new Label("Points: "), 0, 11, 1, 1);
+		pointsField = new TextField();
+		add(pointsField, 1, 11, 2, 1);
 
 		btnCancel = new Button("Cancel");
 		btnCancel.setText("Cancel");
@@ -69,33 +92,44 @@ public class QuestionDetailPane extends GridPane {
 			Stage stage = (Stage) this.getScene().getWindow();
 			stage.close();
 		});
-		add(btnCancel, 0, 11, 1, 1);
+		add(btnCancel, 0, 12, 1, 1);
 
 		btnOK = new Button("Save");
 		btnOK.isDefaultButton();
 		btnOK.setText("Save");
 		btnOK.setOnAction((e) -> {
 			try {
+				String qu = this.questionField.getText();
+				String fe = this.feedbackField.getText();
+				String ca = this.categoryField.getValue().toString();
+				int po = 0;
+				try {
+					po = Integer.valueOf(this.pointsField.getText());
+				}catch (Exception exx){
+					JOptionPane.showMessageDialog(null, "Gelieve een getal in te geven bij 'points' ");
 
+				}
+				ArrayList<String> temp = new ArrayList<>();
+				for(String s: this.statementsArea.getText().split("\n")){
+					temp.add(s);
+				}
+				String[] st = new String[temp.size()];
+				for(int i = 0; i<temp.size(); i++){
+					st[i] = temp.get(i);
+				}
+				this.t.addQuestion(qu,fe,st,ca,po);
+				feedbackField.setText("");
 				questionField.setText("");
 				statementField.setText("");
+				statementsArea.setText("");
+				pointsField.setText("");
+				System.out.println(this.t.toString());
 			}catch(Exception ex){
-				ex.printStackTrace();
+				JOptionPane.showMessageDialog(null, ex.getMessage());
 			}
 		});
-		add(btnOK, 1, 11, 2, 1);
+		add(btnOK, 1, 12, 2, 1);
 		
 	}
 
-	class AddStatementListener implements EventHandler<ActionEvent> {
-		@Override
-		public void handle(ActionEvent e) {
-		}
-	}
-
-	class RemoveStatementListener implements EventHandler<ActionEvent> {
-		@Override
-		public void handle(ActionEvent e) {
-		}
-	}
 }
