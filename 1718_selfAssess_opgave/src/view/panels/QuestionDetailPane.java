@@ -3,11 +3,7 @@ package view.panels;
 import domain.Controller.dbController;
 import domain.model.Category;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -106,8 +102,10 @@ public class QuestionDetailPane extends GridPane {
 				try {
 					po = Integer.valueOf(this.pointsField.getText());
 				}catch (Exception exx){
-					JOptionPane.showMessageDialog(null, "Gelieve een getal in te geven bij 'points' ");
-
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setHeaderText("ERROR");
+					alert.setContentText("Gelieve een getal in te geven.");
+					alert.showAndWait();
 				}
 				ArrayList<String> temp = new ArrayList<>();
 				for(String s: this.statementsArea.getText().split("\n")){
@@ -125,7 +123,10 @@ public class QuestionDetailPane extends GridPane {
 				pointsField.setText("");
 				System.out.println(this.t.toString());
 			}catch(Exception ex){
-				JOptionPane.showMessageDialog(null, ex.getMessage());
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setHeaderText("ERROR");
+				alert.setContentText(ex.getMessage());
+				alert.showAndWait();
 			}
 		});
 		add(btnOK, 1, 12, 2, 1);
