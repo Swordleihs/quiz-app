@@ -43,9 +43,9 @@ public class MessagePane extends GridPane {
             Scene scene = new Scene(root, 750, 400);
 
             root.getChildren().add(testPane);
-            mainStage.setScene(scene);
-            mainStage.sizeToScene();
-            mainStage.show();
+            primaryStage.setScene(scene);
+            primaryStage.sizeToScene();
+            primaryStage.show();
         });
         add(testButton, 0,1,1,1);
         setHalignment(testButton, HPos.CENTER);
