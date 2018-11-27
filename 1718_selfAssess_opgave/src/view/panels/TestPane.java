@@ -43,12 +43,13 @@ public class TestPane extends GridPane {
         int row = 1;
 		for (String s : questions.get(0).getStatements()){
 		    RadioButton radioButton = new RadioButton(s);
+		    radioButton.setToggleGroup(statementGroup);
             add(radioButton, 0, row, 1, 1);
             row++;
         }
 
 		submitButton = new Button("Submit");
-        add(submitButton, 0, row, 1, 1);
+        add(submitButton, 0, row,  1, 1);
 	}
 	
 	public void setProcessAnswerAction(EventHandler<ActionEvent> processAnswerAction) {
