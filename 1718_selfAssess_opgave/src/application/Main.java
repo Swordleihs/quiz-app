@@ -11,7 +11,6 @@ import view.panels.AssesMainPane;
 import view.panels.CategoryOverviewPane;
 import view.panels.MessagePane;
 import view.panels.QuestionOverviewPane;
-import view.panels.TestPane;
 
 public class Main extends Application {
 	@Override
@@ -41,6 +40,7 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	public static void main(String[] args) {

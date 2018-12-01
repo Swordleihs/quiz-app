@@ -9,24 +9,27 @@ import domain.model.Question;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class TestPane extends GridPane {
 	private Label questionField;
 	private Button submitButton;
 	private ToggleGroup statementGroup;
 
+	private Question question;
 	private TestController testController;
 
 	
-	public TestPane (TestController testController){
-	    this.testController = testController;
-
-	    ArrayList<Question> questions = testController.getQuestions();
+	public TestPane (Question q, TestController t){
+	    this.question = q;
+	    this.testController = t;
 
 		this.setPrefHeight(300);
 		this.setPrefWidth(750);
@@ -35,13 +38,13 @@ public class TestPane extends GridPane {
         this.setVgap(5);
         this.setHgap(5);
 
-		questionField = new Label(questions.get(0).getQuestion());
+		questionField = new Label(this.question.getQuestion());
 		add(questionField, 0, 0, 1, 1);
 
         statementGroup = new ToggleGroup();
 
         int row = 1;
-		for (String s : questions.get(0).getStatements()){
+		for (String s : this.question.getStatements()){
 		    RadioButton radioButton = new RadioButton(s);
 		    radioButton.setToggleGroup(statementGroup);
             add(radioButton, 0, row, 1, 1);
@@ -49,6 +52,9 @@ public class TestPane extends GridPane {
         }
 
 		submitButton = new Button("Submit");
+		submitButton.setOnAction((e) -> {
+				this.testController.answerGiven();
+		});
         add(submitButton, 0, row,  1, 1);
 	}
 	
@@ -57,7 +63,7 @@ public class TestPane extends GridPane {
 	}
 
 	public List<String> getSelectedStatements() {
-		 List<String> selected = new ArrayList<String>();
+		List<String> selected = new ArrayList<String>();
 		if(statementGroup.getSelectedToggle()!=null){
 			selected.add(statementGroup.getSelectedToggle().getUserData().toString());
 		}

@@ -4,6 +4,7 @@ import java.util.Observer;
 
 import domain.Controller.TestController;
 import domain.Controller.dbController;
+import domain.model.Question;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -23,9 +24,11 @@ import javafx.stage.Stage;
 public class MessagePane extends GridPane {
 	private Button testButton;
 	private TestController testController;
+	private Stage primaryStage;
 	
 	public MessagePane (TestController testController, Stage primaryStage){
 	    this.testController = testController;
+	    this.primaryStage = primaryStage;
 
 	    setBorder(new Border(new BorderStroke(Color.BLACK, 
 	            BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
@@ -35,17 +38,8 @@ public class MessagePane extends GridPane {
         this.setHgap(5);
 
         testButton = new Button("Evaluate");
-        testButton.setOnAction(e -> {
-            TestPane testPane = new TestPane(this.testController);
-
-
-            Group root = new Group();
-            Scene scene = new Scene(root, 750, 400);
-
-            root.getChildren().add(testPane);
-            primaryStage.setScene(scene);
-            primaryStage.sizeToScene();
-            primaryStage.show();
+        testButton.setOnAction((e) -> {
+            this.testController.startTest(this.primaryStage);
         });
         add(testButton, 0,1,1,1);
         setHalignment(testButton, HPos.CENTER);
