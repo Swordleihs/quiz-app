@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class TestController {
 
-    private dbController db;
+    private DBController db;
     private ArrayList<Question> questions;
 
-    public TestController(dbController db){
+    public TestController(DBController db){
         this.db = db;
         this.questions = this.db.getQuestions();
     }

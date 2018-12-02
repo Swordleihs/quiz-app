@@ -1,7 +1,7 @@
 package application;
 
 import domain.Controller.TestController;
-import domain.Controller.dbController;
+import domain.Controller.DBController;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,14 +11,13 @@ import view.panels.AssesMainPane;
 import view.panels.CategoryOverviewPane;
 import view.panels.MessagePane;
 import view.panels.QuestionOverviewPane;
-import view.panels.TestPane;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
 		try {
-			dbController t = new dbController();
+			DBController t = new DBController();
 			TestController testController = new TestController(t);
 
 			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(t);

@@ -1,6 +1,6 @@
 package view.panels;
 
-import domain.Controller.dbController;
+import domain.Controller.DBController;
 import domain.model.Category;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -9,8 +9,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class QuestionDetailPane extends GridPane {
 	private Button btnOK, btnCancel;
@@ -18,10 +18,10 @@ public class QuestionDetailPane extends GridPane {
 	private TextField questionField, statementField, feedbackField, pointsField;
 	private Button btnAdd, btnRemove;
 	private ComboBox categoryField;
-	private dbController t;
+	private DBController dbController;
 
-	public QuestionDetailPane(dbController t) {
-		this.t = t;
+	public QuestionDetailPane(DBController dbController) {
+		this.dbController = dbController;
 		this.setPrefHeight(300);
 		this.setPrefWidth(320);
 		
@@ -69,8 +69,8 @@ public class QuestionDetailPane extends GridPane {
 		add(new Label("Category: "), 0, 9, 1, 1);
 		categoryField = new ComboBox();
 		add(categoryField, 1, 9, 2, 1);
-		for(Category c: t.getCategories()){
-			categoryField.getItems().add(c.getName());
+		for(Category category: dbController.getCategories()){
+			categoryField.getItems().add(category.getName());
 		}
 		categoryField.setValue("UML");
 
@@ -101,27 +101,25 @@ public class QuestionDetailPane extends GridPane {
 				int po = 0;
 				try {
 					po = Integer.valueOf(this.pointsField.getText());
-				}catch (Exception exx){
+				}catch (Exception ex){
 					Alert alert = new Alert(Alert.AlertType.INFORMATION);
 					alert.setHeaderText("ERROR");
 					alert.setContentText("Gelieve een getal in te geven.");
 					alert.showAndWait();
 				}
 				ArrayList<String> temp = new ArrayList<>();
-				for(String s: this.statementsArea.getText().split("\n")){
-					temp.add(s);
-				}
+				temp.addAll(Arrays.asList(this.statementsArea.getText().split("\n")));
+
 				String[] st = new String[temp.size()];
 				for(int i = 0; i<temp.size(); i++){
 					st[i] = temp.get(i);
 				}
-				this.t.addQuestion(qu,fe,st,ca,po);
+				this.dbController.addQuestion(qu,fe,st,ca,po);
 				feedbackField.setText("");
 				questionField.setText("");
 				statementField.setText("");
 				statementsArea.setText("");
 				pointsField.setText("");
-				System.out.println(this.t.toString());
 			}catch(Exception ex){
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setHeaderText("ERROR");

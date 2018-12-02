@@ -1,22 +1,20 @@
 package view.panels;
 
-import domain.Controller.dbController;
+import domain.Controller.DBController;
 import domain.model.Category;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-
 public class CategoryDetailPane extends GridPane {
 	private Button btnOK, btnCancel;
 	private TextField titleField, descriptionField;
 	private ComboBox categoryField;
-	private dbController t;
+	private DBController dbController;
 
-	public CategoryDetailPane(dbController t) {
-		this.t = t;
+	public CategoryDetailPane(DBController dbController) {
+		this.dbController = dbController;
 		this.setPrefHeight(150);
 		this.setPrefWidth(300);
 		
@@ -35,8 +33,8 @@ public class CategoryDetailPane extends GridPane {
 		this.add(new Label("Main Category:"), 0, 2, 1, 1);
 		categoryField = new ComboBox<>();
 		categoryField.getItems().add("Geen");
-		for(Category c: t.getCategories()){
-			categoryField.getItems().add(c.getName());
+		for(Category category: dbController.getCategories()){
+			categoryField.getItems().add(category.getName());
 		}
 		categoryField.setValue("Geen");
 		this.add(categoryField, 1, 2, 1, 1);
@@ -52,10 +50,9 @@ public class CategoryDetailPane extends GridPane {
 		btnOK.isDefaultButton();
 		btnOK.setOnAction((e) -> {
 			try {
-				this.t.addCategory(titleField.getText(), descriptionField.getText(), categoryField.getValue().toString());
+				this.dbController.addCategory(titleField.getText(), descriptionField.getText(), categoryField.getValue().toString());
 				titleField.setText("");
 				descriptionField.setText("");
-				System.out.println(this.t.toString());
 			}catch(Exception ex){
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setHeaderText("ERROR");

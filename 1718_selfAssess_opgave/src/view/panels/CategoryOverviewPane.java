@@ -1,6 +1,6 @@
 package view.panels;
 
-import domain.Controller.dbController;
+import domain.Controller.DBController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -19,10 +19,10 @@ import javafx.stage.Stage;
 public class CategoryOverviewPane extends GridPane {
 	private TableView table;
 	private Button btnNew;
-	private dbController t;
+	private DBController dbController;
 
-	public CategoryOverviewPane(dbController t) {
-		this.t = t;
+	public CategoryOverviewPane(DBController dbController) {
+		this.dbController = dbController;
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -31,21 +31,21 @@ public class CategoryOverviewPane extends GridPane {
 		
 		table = new TableView<>();
 		table.setPrefWidth(REMAINING);
-        TableColumn nameCol = new TableColumn<>("Name");
-        nameCol.setCellValueFactory(new PropertyValueFactory("name"));
+        TableColumn<Object, Object> nameCol = new TableColumn<>("Name");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         table.getColumns().add(nameCol);
-        TableColumn descriptionCol = new TableColumn<>("Description");
-        descriptionCol.setCellValueFactory(new PropertyValueFactory("description"));
+        TableColumn<Object, Object> descriptionCol = new TableColumn<>("Description");
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         table.getColumns().add(descriptionCol);
-		TableColumn superCol = new TableColumn<>("Supercategory");
-		superCol.setCellValueFactory(new PropertyValueFactory("supercategory"));
+		TableColumn<Object, Object> superCol = new TableColumn<>("Supercategory");
+		superCol.setCellValueFactory(new PropertyValueFactory<>("supercategory"));
 		table.getColumns().add(superCol);
 		this.add(table, 0, 2, 2, 6);
-		table.setItems(t.getCategoriesObservable());
+		table.setItems(dbController.getCategoriesObservable());
 
 		btnNew = new Button("New");
 		btnNew.setOnAction(e -> {
-			CategoryDetailPane addCatPane = new CategoryDetailPane(t);
+			CategoryDetailPane addCatPane = new CategoryDetailPane(dbController);
             Stage addCatStage = new Stage();
 
             Group root = new Group();

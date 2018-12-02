@@ -1,6 +1,6 @@
 package view.panels;
 
-import domain.Controller.dbController;
+import domain.Controller.DBController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -18,9 +18,9 @@ import javafx.stage.Stage;
 public class QuestionOverviewPane extends GridPane {
 	private TableView table;
 	private Button btnNew;
-	private dbController t;
+	private DBController t;
 	
-	public QuestionOverviewPane(dbController t) {
+	public QuestionOverviewPane(DBController t) {
 		this.t = t;
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
