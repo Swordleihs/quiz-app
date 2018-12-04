@@ -51,12 +51,14 @@ public class TestController {
         }
     }
 
-    public void answerGiven(){
-        Question q = this.nextQuestion();
-        if (q == null){
+    public void answerGiven(String answer){
+        System.out.println(answer);
+        System.out.println(test.checkAnswer(answer));
+        Question question = this.nextQuestion();
+        if (question == null){
             this.finishTest();
         }else{
-            TestPane testPane = new TestPane(q, this);
+            TestPane testPane = new TestPane(question, this);
 
             Group root = new Group();
             Scene scene = new Scene(root, 750, 400);

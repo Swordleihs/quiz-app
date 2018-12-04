@@ -3,9 +3,8 @@ package domain.model;
 import domain.Exceptions.DomainException;
 
 public class Question {
-    private String question, feedback, answer;
+    private String question, feedback,answer,category;
     private String[] statements;
-    private String category;
     private int points;
 
     public Question(String qu, String fe, String[] st, String ca, int po){
@@ -14,7 +13,7 @@ public class Question {
         setQuestion(qu);
         setStatements(st);
         setPoints(po);
-        this.setAnswer();
+        setAnswer();
     }
 
     public String printStatements(){
@@ -85,6 +84,13 @@ public class Question {
     }
 
     private void setAnswer(){
-        this.answer = this.statements[0];
+        this.answer = statements[0];
     }
+
+    public boolean checkAnswer(String answer){
+        System.out.println("ANTWOORD " + this.answer);
+        System.out.println("DOORGEGEVEN " + answer);
+        return this.answer.equals(answer);
+    }
+
 }

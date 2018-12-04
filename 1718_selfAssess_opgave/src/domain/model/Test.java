@@ -8,9 +8,15 @@ public class Test {
 
     private ArrayList<Question> questions;
     private Question currentQuestion;
+    private ArrayList<Question> asked;
 
     public Test(ArrayList<Question> q){
         this.questions = q;
+        this.asked = new ArrayList<>();
+    }
+
+    public boolean checkAnswer(String answer){
+        return this.currentQuestion.checkAnswer(answer);
     }
 
     public boolean nextQuestion(){
@@ -23,6 +29,7 @@ public class Test {
             int n = rand.nextInt(size) + 1;
 
             this.currentQuestion = this.questions.get(n-1);
+            asked.add(this.currentQuestion);
             this.questions.remove(n-1);
 
             String[] statements= this.currentQuestion.getStatements();
@@ -32,13 +39,10 @@ public class Test {
             int i = 0;
             while (statementsArrayList.size() > 0){
                 int size2 = statementsArrayList.size();
-
                 Random rand2 = new Random();
                 int m = rand2.nextInt(size2) + 1;
-
                 randomizedStatements[i] = statementsArrayList.get(m-1);
                 statementsArrayList.remove(m-1);
-
                 i++;
             }
 
@@ -46,7 +50,6 @@ public class Test {
             return true;
         }
     }
-
     public Question getQuestion(){
         return this.currentQuestion;
     }

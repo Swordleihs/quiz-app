@@ -42,17 +42,19 @@ public class TestPane extends GridPane {
 
         statementGroup = new ToggleGroup();
 
+        RadioButton radioButton = new RadioButton();
         int row = 1;
 		for (String s : this.question.getStatements()){
-		    RadioButton radioButton = new RadioButton(s);
+		    radioButton = new RadioButton(s);
 		    radioButton.setToggleGroup(statementGroup);
             add(radioButton, 0, row, 1, 1);
             row++;
         }
 
 		submitButton = new Button("Submit");
-		submitButton.setOnAction((e) -> {
-				this.testController.answerGiven();
+        RadioButton finalRadioButton = radioButton;
+        submitButton.setOnAction((e) -> {
+				this.testController.answerGiven(finalRadioButton.getText());
 		});
         add(submitButton, 0, row,  1, 1);
 	}
