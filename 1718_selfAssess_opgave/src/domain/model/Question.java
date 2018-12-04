@@ -3,7 +3,7 @@ package domain.model;
 import domain.Exceptions.DomainException;
 
 public class Question {
-    private String question, feedback;
+    private String question, feedback, answer;
     private String[] statements;
     private String category;
     private int points;
@@ -14,6 +14,7 @@ public class Question {
         setQuestion(qu);
         setStatements(st);
         setPoints(po);
+        this.setAnswer();
     }
 
     public String printStatements(){
@@ -25,8 +26,9 @@ public class Question {
         return res;
     }
 
-
-
+    public boolean checkAnswer(){
+        return true;
+    }
 
     //=========================================
     //========== GETTERS AND SETTERS ==========
@@ -36,7 +38,7 @@ public class Question {
     }
     private void setQuestion(String question) {
         if(question == null || question.trim().isEmpty()){
-            throw new DomainException("De vraag van de vraag is niet in orde!");
+            throw new DomainException("Fatal Server Error: main frame ");
         }
         this.question = question;
     }
@@ -80,5 +82,9 @@ public class Question {
             throw new DomainException("De punten van de vraag zijn niet in orde, minimum 1!");
         }
         this.points = points;
+    }
+
+    private void setAnswer(){
+        this.answer = this.statements[0];
     }
 }
