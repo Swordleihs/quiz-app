@@ -60,9 +60,7 @@ public class QuestionDB {
     }
 
     public ArrayList<Question> getAll(){
-        ArrayList<Question> res = new ArrayList<>();
-        res.addAll(questions);
-        return res;
+        return new ArrayList<>(questions);
     }
 
     public ObservableList<Question> getAllObservable(){

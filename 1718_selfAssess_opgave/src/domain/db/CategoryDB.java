@@ -60,9 +60,7 @@ public class CategoryDB {
     }
 
     public ArrayList<Category> getAll(){
-        ArrayList<Category> res = new ArrayList<>();
-        res.addAll(categories);
-        return res;
+        return new ArrayList<>(categories);
     }
 
     public ObservableList<Category> getAllObservable(){

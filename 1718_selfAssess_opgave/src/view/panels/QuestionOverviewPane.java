@@ -20,7 +20,7 @@ public class QuestionOverviewPane extends GridPane {
 	private Button btnNew;
 	private DBController dbController;
 	
-	public QuestionOverviewPane(DBController tdbController) {
+	public QuestionOverviewPane(DBController dbController) {
 		this.dbController = dbController;
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
