@@ -9,12 +9,13 @@ public class Test {
     private ArrayList<Question> questions;
     private Question currentQuestion;
     private ArrayList<Question> asked;
-    private int points;
+    private int points, totalPoints;
 
     public Test(ArrayList<Question> q){
         this.questions = q;
         this.asked = new ArrayList<>();
         this.points = 0;
+        this.totalPoints = 0;
     }
 
     public boolean checkAnswer(String answer){
@@ -62,5 +63,13 @@ public class Test {
 
     public int getPoints(){
         return this.points;
+    }
+
+    public void addTotalPoints(int points){
+        this.totalPoints += points;
+    }
+
+    public int getTotalPoints(){
+        return this.totalPoints;
     }
 }

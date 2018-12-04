@@ -4,6 +4,8 @@ import domain.model.Question;
 import domain.model.Test;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import view.panels.MessagePane;
 import view.panels.TestPane;
@@ -16,8 +18,6 @@ public class TestController {
     private ArrayList<Question> questions;
     private Test test;
     private Stage s;
-
-
 
     public TestController(DBController db){
         this.db = db;
@@ -53,6 +53,7 @@ public class TestController {
 
     public void answerGiven(String answer){
         System.out.println(test.checkAnswer(answer));
+        this.test.addTotalPoints(this.test.getQuestion().getPoints());
         if(test.checkAnswer(answer)){
             this.test.addPoints(this.test.getQuestion().getPoints());
         }
@@ -74,7 +75,12 @@ public class TestController {
 
     public void finishTest(){
         System.out.println(this.test.getPoints());
+        System.out.println(this.test.getTotalPoints());
+
+        Label score = new Label("Score: " + this.test.getPoints() + "/" + this.test.getTotalPoints());
+
         MessagePane m = new MessagePane(this, this.s);
+        m.add(score, 1, 1);
 
         Group root = new Group();
         Scene scene = new Scene(root, 750, 400);
