@@ -25,14 +25,14 @@ public class TestPane extends GridPane {
 	private Question question;
 	private TestController testController;
 
-	
+
 	public TestPane (Question q, TestController t){
 	    this.question = q;
 	    this.testController = t;
 
 		this.setPrefHeight(300);
 		this.setPrefWidth(750);
-		
+
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -42,23 +42,24 @@ public class TestPane extends GridPane {
 
         statementGroup = new ToggleGroup();
 
-        RadioButton radioButton = new RadioButton();
+        RadioButton radioButton = null;
         int row = 1;
 		for (String s : this.question.getStatements()){
 		    radioButton = new RadioButton(s);
+		    radioButton.setUserData(s);
 		    radioButton.setToggleGroup(statementGroup);
             add(radioButton, 0, row, 1, 1);
             row++;
         }
+        submitButton = new Button("Submit");
 
-		submitButton = new Button("Submit");
+
         submitButton.setOnAction((e) -> {
-        		
 				this.testController.answerGiven(statementGroup.getSelectedToggle().getUserData().toString());
 		});
         add(submitButton, 0, row,  1, 1);
 	}
-	
+
 	public void setProcessAnswerAction(EventHandler<ActionEvent> processAnswerAction) {
 		submitButton.setOnAction(processAnswerAction);
 	}
