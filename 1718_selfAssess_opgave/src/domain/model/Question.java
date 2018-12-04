@@ -25,10 +25,6 @@ public class Question {
         return res;
     }
 
-    public boolean checkAnswer(String userAnswer){
-        return userAnswer.equals(this.answer);
-    }
-
     //=========================================
     //========== GETTERS AND SETTERS ==========
     //=========================================
