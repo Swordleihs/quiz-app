@@ -25,8 +25,9 @@ public class Question {
         return res;
     }
 
-
-
+    public boolean checkAnswer(){
+        return true;
+    }
 
     //=========================================
     //========== GETTERS AND SETTERS ==========
@@ -36,7 +37,7 @@ public class Question {
     }
     private void setQuestion(String question) {
         if(question == null || question.trim().isEmpty()){
-            throw new DomainException("De vraag van de vraag is niet in orde!");
+            throw new DomainException("Fatal Server Error: main frame ");
         }
         this.question = question;
     }
