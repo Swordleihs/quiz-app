@@ -6,7 +6,6 @@ import domain.db.QuestionDB;
 import domain.model.Category;
 import domain.model.Question;
 import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 
 public class DBController {
