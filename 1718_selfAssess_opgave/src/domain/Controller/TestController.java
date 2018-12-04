@@ -53,6 +53,9 @@ public class TestController {
 
     public void answerGiven(String answer){
         System.out.println(test.checkAnswer(answer));
+        if(test.checkAnswer(answer)){
+            this.test.addPoints(this.test.getQuestion().getPoints());
+        }
         Question question = this.nextQuestion();
         if (question == null){
             this.finishTest();
@@ -70,6 +73,7 @@ public class TestController {
     }
 
     public void finishTest(){
+        System.out.println(this.test.getPoints());
         MessagePane m = new MessagePane(this, this.s);
 
         Group root = new Group();
