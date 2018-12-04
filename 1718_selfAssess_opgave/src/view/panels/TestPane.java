@@ -52,9 +52,9 @@ public class TestPane extends GridPane {
         }
 
 		submitButton = new Button("Submit");
-        RadioButton finalRadioButton = radioButton;
         submitButton.setOnAction((e) -> {
-				this.testController.answerGiven(finalRadioButton.getText());
+        		
+				this.testController.answerGiven(statementGroup.getSelectedToggle().getUserData().toString());
 		});
         add(submitButton, 0, row,  1, 1);
 	}
