@@ -1,6 +1,7 @@
 package domain.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Test {
@@ -26,10 +27,7 @@ public class Test {
 
             String[] statements= this.currentQuestion.getStatements();
             String[] randomizedStatements = new String[statements.length];
-            ArrayList<String> statementsArrayList = new ArrayList<>();
-            for (String s : statements){
-                statementsArrayList.add(s);
-            }
+            ArrayList<String> statementsArrayList = new ArrayList<>(Arrays.asList(statements));
 
             int i = 0;
             while (statementsArrayList.size() > 0){

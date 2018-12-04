@@ -18,10 +18,10 @@ import javafx.stage.Stage;
 public class QuestionOverviewPane extends GridPane {
 	private TableView table;
 	private Button btnNew;
-	private DBController t;
+	private DBController dbController;
 	
-	public QuestionOverviewPane(DBController t) {
-		this.t = t;
+	public QuestionOverviewPane(DBController tdbController) {
+		this.dbController = dbController;
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -40,11 +40,11 @@ public class QuestionOverviewPane extends GridPane {
 		pointsCol.setCellValueFactory(new PropertyValueFactory("points"));
 		table.getColumns().add(pointsCol);
 		this.add(table, 0, 1, 2, 6);
-		table.setItems(t.getQuestionsObservable());
+		table.setItems(dbController.getQuestionsObservable());
 
 		btnNew = new Button("New");
 		btnNew.setOnAction(e -> {
-			QuestionDetailPane addQuestionPane = new QuestionDetailPane(this.t);
+			QuestionDetailPane addQuestionPane = new QuestionDetailPane(this.dbController);
 			Stage addQuestionStage = new Stage();
 
 			Group root = new Group();

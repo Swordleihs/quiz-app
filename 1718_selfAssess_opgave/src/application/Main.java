@@ -17,12 +17,12 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 
 		try {
-			DBController t = new DBController();
-			TestController testController = new TestController(t);
+			DBController dbController = new DBController();
+			TestController testController = new TestController(dbController);
 
-			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(t);
+			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(dbController);
 
-			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(t);
+			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(dbController);
 
 			MessagePane messagePane = new MessagePane(testController, primaryStage);
 
