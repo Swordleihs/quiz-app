@@ -26,8 +26,6 @@ public class Question {
         return res;
     }
 
-    public boolean checkAnswer(){
-        return true;
     }
 
     //=========================================
