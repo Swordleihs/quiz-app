@@ -52,7 +52,7 @@ public class TestController {
     }
 
     public void answerGiven(String answer){
-        System.out.println(test.checkAnswer(answer));
+        test.checkAnswer(answer);
         Question question = this.nextQuestion();
         if (question == null){
             this.finishTest();
