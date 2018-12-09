@@ -42,10 +42,9 @@ public class TestPane extends GridPane {
 
         statementGroup = new ToggleGroup();
 
-        RadioButton radioButton = null;
         int row = 1;
 		for (String s : this.question.getStatements()){
-		    radioButton = new RadioButton(s);
+			RadioButton radioButton = radioButton = new RadioButton(s);
 		    radioButton.setUserData(s);
 		    radioButton.setToggleGroup(statementGroup);
             add(radioButton, 0, row, 1, 1);
@@ -55,19 +54,15 @@ public class TestPane extends GridPane {
 
 
         submitButton.setOnAction((e) -> {
-				this.testController.answerGiven(statementGroup.getSelectedToggle().getUserData().toString());
+				this.testController.answerGiven(getSelectedStatement());
 		});
         add(submitButton, 0, row,  1, 1);
 	}
 
-	public void setProcessAnswerAction(EventHandler<ActionEvent> processAnswerAction) {
-		submitButton.setOnAction(processAnswerAction);
-	}
-
-	public List<String> getSelectedStatements() {
-		List<String> selected = new ArrayList<String>();
+	public String getSelectedStatement() {
+		String selected = null;
 		if(statementGroup.getSelectedToggle()!=null){
-			selected.add(statementGroup.getSelectedToggle().getUserData().toString());
+			selected = statementGroup.getSelectedToggle().getUserData().toString();
 		}
 		return selected;
 	}

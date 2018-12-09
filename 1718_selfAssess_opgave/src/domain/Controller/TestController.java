@@ -17,7 +17,7 @@ public class TestController {
     private DBController db;
     private ArrayList<Question> questions;
     private Test test;
-    private Stage s;
+    private Stage stage;
 
     public TestController(DBController db){
         this.db = db;
@@ -25,7 +25,7 @@ public class TestController {
 
     public void startTest(Stage s){
         this.questions = this.db.getQuestions();
-        this.s = s;
+        this.stage = s;
         this.test = new Test(this.questions);
         System.out.println("Test started");
             Question q = this.nextQuestion();
@@ -35,9 +35,9 @@ public class TestController {
             Scene scene = new Scene(root, 750, 400);
 
             root.getChildren().add(testPane);
-            this.s.setScene(scene);
-            this.s.sizeToScene();
-            this.s.show();
+            this.stage.setScene(scene);
+            this.stage.sizeToScene();
+            this.stage.show();
     }
 
     public Question nextQuestion(){
@@ -53,10 +53,6 @@ public class TestController {
 
     public void answerGiven(String answer){
         System.out.println(test.checkAnswer(answer));
-        this.test.addTotalPoints(this.test.getQuestion().getPoints());
-        if(test.checkAnswer(answer)){
-            this.test.addPoints(this.test.getQuestion().getPoints());
-        }
         Question question = this.nextQuestion();
         if (question == null){
             this.finishTest();
@@ -67,28 +63,28 @@ public class TestController {
             Scene scene = new Scene(root, 750, 400);
 
             root.getChildren().add(testPane);
-            this.s.setScene(scene);
-            this.s.sizeToScene();
-            this.s.show();
+            this.stage.setScene(scene);
+            this.stage.sizeToScene();
+            this.stage.show();
         }
     }
 
     public void finishTest(){
-        System.out.println(this.test.getPoints());
-        System.out.println(this.test.getTotalPoints());
 
         Label score = new Label("Score: " + this.test.getPoints() + "/" + this.test.getTotalPoints());
+        Label feedback = new Label(this.test.getFeedback());
+        MessagePane m = new MessagePane(this, this.stage);
 
-        MessagePane m = new MessagePane(this, this.s);
-        m.add(score, 1, 1);
-
+        m.add(feedback, 0,0, 1,1);
+        m.add(score, 0,2, 1,1);
         Group root = new Group();
         Scene scene = new Scene(root, 750, 400);
 
         root.getChildren().add(m);
-        this.s.setScene(scene);
-        this.s.sizeToScene();
-        this.s.show();
+        this.stage.setScene(scene);
+        this.stage.sizeToScene();
+        this.stage.show();
+
     }
 
 }

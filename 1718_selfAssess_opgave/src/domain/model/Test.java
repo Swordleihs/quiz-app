@@ -9,6 +9,7 @@ public class Test {
     private ArrayList<Question> questions;
     private Question currentQuestion;
     private ArrayList<Question> asked;
+    private String feedback;
     private int points, totalPoints;
 
     public Test(ArrayList<Question> q){
@@ -19,6 +20,12 @@ public class Test {
     }
 
     public boolean checkAnswer(String answer){
+        if(!this.currentQuestion.checkAnswer(answer)){
+            System.out.println(this.currentQuestion.getFeedback());
+            this.feedback += this.currentQuestion.getFeedback() + "\n";
+            this.points += this.currentQuestion.getPoints();
+        }
+        this.totalPoints += this.currentQuestion.getPoints();
         return this.currentQuestion.checkAnswer(answer);
     }
 
@@ -57,19 +64,16 @@ public class Test {
         return this.currentQuestion;
     }
 
-    public void addPoints(int points){
-        this.points += points;
-    }
-
     public int getPoints(){
         return this.points;
     }
 
-    public void addTotalPoints(int points){
-        this.totalPoints += points;
-    }
-
     public int getTotalPoints(){
         return this.totalPoints;
+    }
+
+    public String getFeedback(){
+        System.out.println(this.feedback);
+        return this.feedback;
     }
 }

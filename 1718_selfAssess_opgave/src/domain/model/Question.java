@@ -84,8 +84,6 @@ public class Question {
     }
 
     public boolean checkAnswer(String answer){
-        System.out.println("ANTWOORD " + this.answer);
-        System.out.println("DOORGEGEVEN " + answer);
         return this.answer.equals(answer);
     }
 
