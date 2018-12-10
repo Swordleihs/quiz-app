@@ -1,6 +1,6 @@
 package domain.db;
 
-import domain.Exceptions.*;
+import domain.Exceptions.dbException;
 import domain.model.Question;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +13,7 @@ public class QuestionDB {
     private ObservableList<Question> questions;
     private File f;
 
-    public QuestionDB(){
+    public QuestionDB() {
         questions = FXCollections.observableArrayList(new ArrayList<Question>());
         f = new File("Questions.txt");
         if (f.isDirectory() || !f.exists()) {
@@ -36,7 +36,7 @@ public class QuestionDB {
                 String[] statements =
                         statementsString.split(":");
                 int points = Integer.valueOf(pointsString);
-                Question q =new Question(question, feedback,
+                Question q = new Question(question, feedback,
                         statements, category, points);
                 questions.add(q);
             }
@@ -46,9 +46,9 @@ public class QuestionDB {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String res = "";
-        for(Question q: questions){
+        for (Question q : questions) {
             res += "\n=======================" +
                     "\nQuestion: " + q.getQuestion() +
                     "\nPoints: " + q.getPoints() +
@@ -59,15 +59,15 @@ public class QuestionDB {
         return res;
     }
 
-    public ArrayList<Question> getAll(){
+    public ArrayList<Question> getAll() {
         return new ArrayList<>(questions);
     }
 
-    public ObservableList<Question> getAllObservable(){
+    public ObservableList<Question> getAllObservable() {
         return this.questions;
     }
 
-    public void addQuestion(String qu, String fe, String[] st, String ca, int po){
+    public void addQuestion(String qu, String fe, String[] st, String ca, int po) {
         questions.add(new Question(qu, fe, st, ca, po));
     }
 }

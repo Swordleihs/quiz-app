@@ -1,7 +1,8 @@
 package application;
 
-import domain.Controller.TestController;
 import domain.Controller.DBController;
+import domain.Controller.TestController;
+import domain.db.PropertiesDB;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,37 +14,38 @@ import view.panels.MessagePane;
 import view.panels.QuestionOverviewPane;
 
 public class Main extends Application {
-	@Override
-	public void start(Stage primaryStage) {
+    public static void main(String[] args) {
+        launch(args);
+    }
 
-		try {
-			DBController dbController = new DBController();
-			TestController testController = new TestController(dbController);
+    @Override
+    public void start(Stage primaryStage) {
 
-			QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(dbController);
+        try {
 
-			CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(dbController);
+            DBController dbController = new DBController();
+            TestController testController = new TestController(dbController);
 
-			MessagePane messagePane = new MessagePane(testController, primaryStage);
+            QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(dbController);
 
-			Group root = new Group();
-			Scene scene = new Scene(root, 750, 400);
+            CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(dbController);
 
-			BorderPane borderPane = new AssesMainPane(messagePane, categoryOverviewPanel, questionOverviewPane);
-			borderPane.prefHeightProperty().bind(scene.heightProperty());
-			borderPane.prefWidthProperty().bind(scene.widthProperty());
+            MessagePane messagePane = new MessagePane(testController, primaryStage);
 
-			root.getChildren().add(borderPane);
-			primaryStage.setScene(scene);
-			primaryStage.sizeToScene();
-			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+            Group root = new Group();
+            Scene scene = new Scene(root, 750, 400);
 
-	}
+            BorderPane borderPane = new AssesMainPane(messagePane, categoryOverviewPanel, questionOverviewPane);
+            borderPane.prefHeightProperty().bind(scene.heightProperty());
+            borderPane.prefWidthProperty().bind(scene.widthProperty());
 
-	public static void main(String[] args) {
-		launch(args);
-	}
+            root.getChildren().add(borderPane);
+            primaryStage.setScene(scene);
+            primaryStage.sizeToScene();
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

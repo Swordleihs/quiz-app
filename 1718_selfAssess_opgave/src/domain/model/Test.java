@@ -24,7 +24,7 @@ public class Test {
         if (!this.currentQuestion.checkAnswer(answer)) {
             System.out.println(this.currentQuestion.getFeedback());
             this.feedback += this.currentQuestion.getFeedback() + "\n";
-        }else{
+        } else {
             this.points += this.currentQuestion.getPoints();
         }
         this.totalPoints += this.currentQuestion.getPoints();

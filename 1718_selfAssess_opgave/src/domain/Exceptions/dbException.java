@@ -1,10 +1,11 @@
 package domain.Exceptions;
 
 public class dbException extends RuntimeException {
-    public dbException(){
+    public dbException() {
         super();
     }
-    public dbException(String ex){
+
+    public dbException(String ex) {
         super(ex);
     }
 }
