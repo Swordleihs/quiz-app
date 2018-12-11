@@ -2,6 +2,7 @@ package domain.Controller;
 
 import domain.Exceptions.DomainException;
 import domain.db.CategoryDB;
+import domain.db.PropertiesDB;
 import domain.db.QuestionDB;
 import domain.model.Category;
 import domain.model.Question;
@@ -12,10 +13,12 @@ import java.util.ArrayList;
 public class DBController {
     private CategoryDB categorydb;
     private QuestionDB questiondb;
+    private PropertiesDB propertiesDB;
 
     public DBController() {
         categorydb = new CategoryDB();
         questiondb = new QuestionDB();
+        propertiesDB = new PropertiesDB();
     }
 
     @Override
@@ -24,6 +27,9 @@ public class DBController {
         res += categorydb.toString() + "\n\n" +
                 questiondb.toString();
         return res;
+    }
+    public String getProperty(String name){
+        return propertiesDB.getProperties().getProperty(name);
     }
 
     public ObservableList<Category> getCategoriesObservable() {

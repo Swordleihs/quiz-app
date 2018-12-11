@@ -9,7 +9,9 @@ public class PropertiesDB {
     private InputStream input = null;
     private OutputStream output = null;
 
-
+    public Properties getProperties(){
+        return  this.prop;
+    }
     public PropertiesDB(){
 /*        try {
             output = new FileOutputStream("evaluation.properties");

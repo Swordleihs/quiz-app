@@ -84,16 +84,19 @@ public class TestController {
             int[] temp = (int[])pair.getValue();
             allescores += key + ":  " + temp[0] + "/" + temp[1] + "\n";
         }
-        Label score = new Label(allescores);
-        Label feedback = new Label(this.test.getFeedback());
 
         this.stage.close();
 
         QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(this.db);
         CategoryOverviewPane categoryOverviewPane = new CategoryOverviewPane(this.db);
         MessagePane m = new MessagePane(this, this.primaryStage);
-        m.add(feedback, 0, 0, 1, 1);
-        m.add(score, 0, 2, 1, 1);
+        if(this.db.getProperty("evaluation.mode").equals("feedback")) {
+            Label feedback = new Label(this.test.getFeedback());
+            m.add(feedback, 0, 0, 1, 1);
+        }else if(this.db.getProperty("evaluation.mode").equals("score")) {
+            Label score = new Label(allescores);
+            m.add(score, 0, 2, 1, 1);
+        }
 
         Group root = new Group();
         Scene scene = new Scene(root, 750, 400);
