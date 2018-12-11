@@ -11,11 +11,9 @@ import javafx.stage.Stage;
 public class MessagePane extends GridPane {
     private Button testButton;
     private TestController testController;
-    private Stage primaryStage;
 
-    public MessagePane(TestController testController, Stage primaryStage) {
+    public MessagePane(TestController testController, Stage stagePrimary) {
         this.testController = testController;
-        this.primaryStage = primaryStage;
 
         setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
@@ -26,7 +24,7 @@ public class MessagePane extends GridPane {
 
         testButton = new Button("Evaluate");
         testButton.setOnAction((e) -> {
-            this.testController.startTest(this.primaryStage);
+            this.testController.startTest(stagePrimary);
         });
         add(testButton, 0, 1, 1, 1);
         setHalignment(testButton, HPos.CENTER);

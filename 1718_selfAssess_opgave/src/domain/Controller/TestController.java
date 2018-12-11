@@ -3,11 +3,12 @@ package domain.Controller;
 import domain.model.Question;
 import domain.model.Test;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import view.panels.MessagePane;
-import view.panels.TestPane;
+import view.panels.*;
 
 import java.util.ArrayList;
 
@@ -16,22 +17,25 @@ public class TestController {
     private DBController db;
     private ArrayList<Question> questions;
     private Test test;
-    private Stage stage;
+    private Stage stage, primaryStage;
 
     public TestController(DBController db) {
         this.db = db;
     }
 
     public void startTest(Stage s) {
+        this.primaryStage = s;
+
         this.questions = this.db.getQuestions();
-        this.stage = s;
         this.test = new Test(this.questions);
         System.out.println("Test started");
         Question q = this.nextQuestion();
-        TestPane testPane = new TestPane(q, this);
 
+        TestPane testPane = new TestPane(q, this);
         Group root = new Group();
         Scene scene = new Scene(root, 750, 400);
+
+        this.stage = new Stage();
 
         root.getChildren().add(testPane);
         this.stage.setScene(scene);
@@ -72,17 +76,27 @@ public class TestController {
 
         Label score = new Label("Score: " + this.test.getPoints() + "/" + this.test.getTotalPoints());
         Label feedback = new Label(this.test.getFeedback());
-        MessagePane m = new MessagePane(this, this.stage);
 
+        this.stage.close();
+
+        QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(this.db);
+        CategoryOverviewPane categoryOverviewPane = new CategoryOverviewPane(this.db);
+        MessagePane m = new MessagePane(this, this.primaryStage);
         m.add(feedback, 0, 0, 1, 1);
         m.add(score, 0, 2, 1, 1);
+
         Group root = new Group();
         Scene scene = new Scene(root, 750, 400);
 
-        root.getChildren().add(m);
-        this.stage.setScene(scene);
-        this.stage.sizeToScene();
-        this.stage.show();
+        BorderPane borderPane = new AssesMainPane(m, categoryOverviewPane, questionOverviewPane);
+        borderPane.prefHeightProperty().bind(scene.heightProperty());
+        borderPane.prefWidthProperty().bind(scene.widthProperty());
+
+        root.getChildren().add(borderPane);
+
+        this.primaryStage.setScene(scene);
+        this.primaryStage.sizeToScene();
+        this.primaryStage.show();
 
     }
 

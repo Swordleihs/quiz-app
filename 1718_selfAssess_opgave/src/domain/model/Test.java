@@ -20,6 +20,8 @@ public class Test {
         this.feedback = "";
     }
 
+    /* Strategy toevoegen voor punten berekening */
+
     public boolean checkAnswer(String answer) {
         if (!this.currentQuestion.checkAnswer(answer)) {
             System.out.println(this.currentQuestion.getFeedback());

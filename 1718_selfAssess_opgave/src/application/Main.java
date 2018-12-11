@@ -22,14 +22,12 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 
         try {
-
             DBController dbController = new DBController();
             TestController testController = new TestController(dbController);
 
+
             QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(dbController);
-
             CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(dbController);
-
             MessagePane messagePane = new MessagePane(testController, primaryStage);
 
             Group root = new Group();
@@ -46,6 +44,5 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

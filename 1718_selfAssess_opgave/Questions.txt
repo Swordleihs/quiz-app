@@ -1,4 +1,4 @@
-Hoeveel km past er in 1 mijl? (1 cijfer na de komma);1,6:1,5:1,3:1,9;Overig;1,6;7
-Welke java versie gebruikt Arne?;11:9:8:10:v2.36.3:Geen idee;Java extra's;Geen idee;3
-Hoeveel is 1+1;2:11:5:6:3;Overig;2;92
-Welk deuren fabrikant is het beste?;Swordleihs Deur corp.:Stijn Deuren Companie;Overig;Swordleihs Deur corp.;999
+Hoeveel km past er in 1 mijl? (1 cijfer na de komma);1,6:1,5:1,3:1,9;Overig;1,6;2
+Welke java versie gebruikt Arne?;11:9:8:10:v2.36.3:Geen idee;Java extra's;Geen idee;10
+Hoeveel is 1+1;2:11:5:6:3;Overig;2;1
+Welk deuren fabrikant is het beste?;Swordleihs Deur corp.:Stijn Deuren Companie;Overig;Swordleihs Deur corp.;5
