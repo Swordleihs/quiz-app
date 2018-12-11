@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import view.panels.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 public class TestController {
 
@@ -73,8 +75,16 @@ public class TestController {
     }
 
     public void finishTest() {
-
-        Label score = new Label("Score: " + this.test.getPoints() + "/" + this.test.getTotalPoints());
+        Map<String, int[]> scores = test.getScores();
+        String allescores = "";
+        Iterator it = scores.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            String key = pair.getKey().toString();
+            int[] temp = (int[])pair.getValue();
+            allescores += key + ":  " + temp[0] + "/" + temp[1] + "\n";
+        }
+        Label score = new Label(allescores);
         Label feedback = new Label(this.test.getFeedback());
 
         this.stage.close();
