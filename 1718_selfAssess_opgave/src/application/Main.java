@@ -24,6 +24,7 @@ public class Main extends Application {
         try {
             DBController dbController = new DBController();
             TestController testController = new TestController(dbController);
+            PropertiesDB propertiesDB = new PropertiesDB();
 
 
             QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(dbController);

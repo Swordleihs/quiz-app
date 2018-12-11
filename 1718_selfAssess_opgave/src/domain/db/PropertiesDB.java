@@ -4,12 +4,13 @@ import java.io.*;
 import java.util.Properties;
 
 public class PropertiesDB {
+
+    private Properties prop = new Properties();
+    private InputStream input = null;
+    private OutputStream output = null;
+
+
     public PropertiesDB(){
-        Properties prop = new Properties();
-
-        OutputStream output = null;
-        InputStream input = null;
-
 /*        try {
             output = new FileOutputStream("evaluation.properties");
             // set the properties value
@@ -31,22 +32,21 @@ public class PropertiesDB {
         }*/
 
         try {
-
-            input = PropertiesDB.class.getClass().getResourceAsStream("/evaluation.properties");
+            this.input = new FileInputStream("evaluation.properties");
+            System.out.println(this.input);
 
             // load a properties file
-            prop.load(input);
+            this.prop.load(this.input);
 
             // get the property value and print it out
-            System.out.println(prop.getProperty("evalution.mode"));
-
+            System.out.println(this.prop.getProperty("evaluation.mode"));
 
         } catch (IOException ex) {
             ex.printStackTrace();
         } finally {
-            if (input != null) {
+            if (this.input != null) {
                 try {
-                    input.close();
+                    this.input.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
