@@ -13,7 +13,11 @@ public class PropertiesDB {
         return  this.prop;
     }
     public PropertiesDB(){
-/*        try {
+        read();
+    }
+
+    public void write(){
+        /*        try {
             output = new FileOutputStream("evaluation.properties");
             // set the properties value
             prop.setProperty("evaluation.mode", "feedback");
@@ -32,7 +36,9 @@ public class PropertiesDB {
             }
 
         }*/
+    }
 
+    public void read(){
         try {
             this.input = new FileInputStream("evaluation.properties");
             System.out.println(this.input);
@@ -54,6 +60,5 @@ public class PropertiesDB {
                 }
             }
         }
-
     }
 }
