@@ -31,9 +31,12 @@ public class DBController {
     public String getProperty(String name){
         return propertiesDB.getProperties().getProperty(name);
     }
-
-    public PropertiesDB getPropertiesDB() { return this.propertiesDB; }
-
+    public void setProperty(String name, String value){
+        propertiesDB.getProperties().setProperty(name, value);
+    }
+    public void writeProperties(){
+        this.propertiesDB.write();
+    }
     public ObservableList<Category> getCategoriesObservable() {
         return categorydb.getAllObservable();
     }

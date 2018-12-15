@@ -23,22 +23,16 @@ public class MessagePane extends GridPane {
         this.setVgap(5);
         this.setHgap(5);
 
-        if(welcomeMessage){
-            if (this.testController.getDBController().getPropertiesDB().getProperties().getProperty("test.completed").equals("true")){
-                Label done = new Label("You already took this test.");
-                add(done, 0, 0, 1, 1);
-            }
-            else {
-                Label done = new Label("You never took this test.");
-                add(done, 0, 0, 1, 1);
-            }
+        if(this.testController.getDB().getProperty("test.completed").equals("true")) {
+            Label testAlreadyDone = new Label("You have already finished this test");
+            this.add(testAlreadyDone, 0, 1, 1, 1);
         }
 
         testButton = new Button("Evaluate");
         testButton.setOnAction((e) -> {
             this.testController.startTest(stagePrimary);
         });
-        add(testButton, 0, 1, 1, 1);
+        add(testButton, 0, 2, 1, 1);
         setHalignment(testButton, HPos.CENTER);
     }
 }

@@ -98,8 +98,10 @@ public class TestController {
             m.add(feedback, 0, 0, 1, 1);
         }else if(this.db.getProperty("evaluation.mode").equals("score")) {
             Label score = new Label(allescores);
-            m.add(score, 0, 2, 1, 1);
+            m.add(score, 0, 3, 1, 1);
         }
+
+        this.db.setProperty("test.completed", "true");
 
         Group root = new Group();
         Scene scene = new Scene(root, 750, 400);
@@ -114,7 +116,9 @@ public class TestController {
         this.primaryStage.sizeToScene();
         this.primaryStage.show();
 
-        this.db.getPropertiesDB().write();
+        this.db.writeProperties();
     }
-
+    public DBController getDB(){
+        return this.db;
+    }
 }
