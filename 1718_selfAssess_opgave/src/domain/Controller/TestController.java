@@ -1,5 +1,6 @@
 package domain.Controller;
 
+import domain.db.PropertiesDB;
 import domain.model.Question;
 import domain.model.Test;
 import javafx.scene.Group;
@@ -74,6 +75,8 @@ public class TestController {
         }
     }
 
+    public DBController getDBController(){ return this.db;}
+
     public void finishTest() {
         Map<String, int[]> scores = test.getScores();
         String allescores = "";
@@ -89,7 +92,7 @@ public class TestController {
 
         QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(this.db);
         CategoryOverviewPane categoryOverviewPane = new CategoryOverviewPane(this.db);
-        MessagePane m = new MessagePane(this, this.primaryStage);
+        MessagePane m = new MessagePane(this, this.primaryStage, false);
         if(this.db.getProperty("evaluation.mode").equals("feedback")) {
             Label feedback = new Label(this.test.getFeedback());
             m.add(feedback, 0, 0, 1, 1);
@@ -111,6 +114,7 @@ public class TestController {
         this.primaryStage.sizeToScene();
         this.primaryStage.show();
 
+        this.db.getPropertiesDB().write();
     }
 
 }

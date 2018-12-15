@@ -95,7 +95,7 @@ public class Test {
 
     public String getFeedback() {
         if (this.feedback == null || this.feedback.isEmpty()) {
-            return "Proficiat alles juist!!!!";
+            return "Congratulations! You answered every question correctly.";
         } else {
             return this.feedback;
         }

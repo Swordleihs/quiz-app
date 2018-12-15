@@ -32,6 +32,8 @@ public class DBController {
         return propertiesDB.getProperties().getProperty(name);
     }
 
+    public PropertiesDB getPropertiesDB() { return this.propertiesDB; }
+
     public ObservableList<Category> getCategoriesObservable() {
         return categorydb.getAllObservable();
     }

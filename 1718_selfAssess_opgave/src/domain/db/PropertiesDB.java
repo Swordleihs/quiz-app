@@ -17,10 +17,10 @@ public class PropertiesDB {
     }
 
     public void write(){
-        /*        try {
+        try {
             output = new FileOutputStream("evaluation.properties");
             // set the properties value
-            prop.setProperty("evaluation.mode", "feedback");
+            prop.setProperty("test.completed", "true");
             // save properties to project root folder
             prop.store(output, null);
 
@@ -35,7 +35,7 @@ public class PropertiesDB {
                 }
             }
 
-        }*/
+        }
     }
 
     public void read(){

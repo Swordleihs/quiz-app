@@ -4,6 +4,7 @@ import domain.Controller.TestController;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -12,7 +13,7 @@ public class MessagePane extends GridPane {
     private Button testButton;
     private TestController testController;
 
-    public MessagePane(TestController testController, Stage stagePrimary) {
+    public MessagePane(TestController testController, Stage stagePrimary, boolean welcomeMessage) {
         this.testController = testController;
 
         setBorder(new Border(new BorderStroke(Color.BLACK,
@@ -21,6 +22,17 @@ public class MessagePane extends GridPane {
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
+
+        if(welcomeMessage){
+            if (this.testController.getDBController().getPropertiesDB().getProperties().getProperty("test.completed").equals("true")){
+                Label done = new Label("You already took this test.");
+                add(done, 0, 0, 1, 1);
+            }
+            else {
+                Label done = new Label("You never took this test.");
+                add(done, 0, 0, 1, 1);
+            }
+        }
 
         testButton = new Button("Evaluate");
         testButton.setOnAction((e) -> {
