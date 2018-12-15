@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import view.panels.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 public class TestController {
 
@@ -73,17 +75,28 @@ public class TestController {
     }
 
     public void finishTest() {
-
-        Label score = new Label("Score: " + this.test.getPoints() + "/" + this.test.getTotalPoints());
-        Label feedback = new Label(this.test.getFeedback());
+        Map<String, int[]> scores = test.getScores();
+        String allescores = "";
+        Iterator it = scores.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            String key = pair.getKey().toString();
+            int[] temp = (int[])pair.getValue();
+            allescores += key + ":  " + temp[0] + "/" + temp[1] + "\n";
+        }
 
         this.stage.close();
 
         QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(this.db);
         CategoryOverviewPane categoryOverviewPane = new CategoryOverviewPane(this.db);
         MessagePane m = new MessagePane(this, this.primaryStage);
-        m.add(feedback, 0, 0, 1, 1);
-        m.add(score, 0, 2, 1, 1);
+        if(this.db.getProperty("evaluation.mode").equals("feedback")) {
+            Label feedback = new Label(this.test.getFeedback());
+            m.add(feedback, 0, 0, 1, 1);
+        }else if(this.db.getProperty("evaluation.mode").equals("score")) {
+            Label score = new Label(allescores);
+            m.add(score, 0, 2, 1, 1);
+        }
 
         Group root = new Group();
         Scene scene = new Scene(root, 750, 400);

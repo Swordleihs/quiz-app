@@ -1,8 +1,6 @@
 package domain.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public class Test {
 
@@ -11,6 +9,7 @@ public class Test {
     private ArrayList<Question> asked;
     private String feedback;
     private int points, totalPoints;
+    private Map<String, int[]> scores;
 
     public Test(ArrayList<Question> q) {
         this.questions = q;
@@ -18,16 +17,31 @@ public class Test {
         this.points = 0;
         this.totalPoints = 0;
         this.feedback = "";
+        this.scores = new HashMap<String, int[]>();
     }
 
     /* Strategy toevoegen voor punten berekening */
 
     public boolean checkAnswer(String answer) {
         if (!this.currentQuestion.checkAnswer(answer)) {
-            System.out.println(this.currentQuestion.getFeedback());
             this.feedback += this.currentQuestion.getFeedback() + "\n";
         } else {
-            this.points += this.currentQuestion.getPoints();
+            if(!scores.containsKey(currentQuestion.getCategory())){
+                int[] temp = {currentQuestion.getPoints(),0};
+                scores.put(currentQuestion.getCategory(), temp);
+            }else{
+                int[] temp = scores.get(currentQuestion.getCategory());
+                temp[0] = temp[0] + currentQuestion.getPoints();
+                scores.put(currentQuestion.getCategory(), temp);
+            }
+        }
+        if(!scores.containsKey(currentQuestion.getCategory())){
+            int[] temp = {0,currentQuestion.getPoints()};
+            scores.put(currentQuestion.getCategory(), temp);
+        }else{
+            int[] temp = scores.get(currentQuestion.getCategory());
+            temp[1] = temp[1] + currentQuestion.getPoints();
+            scores.put(currentQuestion.getCategory(), temp);
         }
         this.totalPoints += this.currentQuestion.getPoints();
         return this.currentQuestion.checkAnswer(answer);
@@ -72,7 +86,9 @@ public class Test {
     public int getPoints() {
         return this.points;
     }
-
+    public Map<String, int[]> getScores(){
+        return this.scores;
+    }
     public int getTotalPoints() {
         return this.totalPoints;
     }
