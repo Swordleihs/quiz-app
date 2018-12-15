@@ -36,7 +36,7 @@ public class TestPane extends GridPane {
 
         int row = 1;
         for (String s : this.question.getStatements()) {
-            RadioButton radioButton = radioButton = new RadioButton(s);
+            RadioButton radioButton = new RadioButton(s);
             radioButton.setUserData(s);
             radioButton.setToggleGroup(statementGroup);
             add(radioButton, 0, row, 1, 1);

@@ -1,6 +1,7 @@
 package view.panels;
 
 import domain.Controller.DBController;
+import domain.model.Category;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -34,12 +35,18 @@ public class CategoryOverviewPane extends GridPane {
         TableColumn<Object, Object> nameCol = new TableColumn<>("Name");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         table.getColumns().add(nameCol);
+
+
         TableColumn<Object, Object> descriptionCol = new TableColumn<>("Description");
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         table.getColumns().add(descriptionCol);
+
+
         TableColumn<Object, Object> superCol = new TableColumn<>("Supercategory");
         superCol.setCellValueFactory(new PropertyValueFactory<>("supercategory"));
         table.getColumns().add(superCol);
+
+
         this.add(table, 0, 2, 2, 6);
         table.setItems(dbController.getCategoriesObservable());
 

@@ -36,8 +36,9 @@ public class DBController {
     }
     public void setProperty(String name, String value){
         propertiesDB.getProperties().setProperty(name, value);
+        writeProperties();
     }
-    public void writeProperties(){
+    private void writeProperties(){
         this.propertiesDB.write();
     }
     public ObservableList<Category> getCategoriesObservable() {

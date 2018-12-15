@@ -35,7 +35,13 @@ public class MessagePane extends GridPane {
         testButton.setOnAction((e) -> {
             this.testController.startTest(stagePrimary);
         });
+        Button resetLastTest = new Button("Reset Previous Test");
+        resetLastTest.setOnAction((ev) -> {
+            this.testController.getDB().setProperty("test.completed", "false");
+        });
         add(testButton, 0, 2, 1, 1);
+        add(resetLastTest, 0, 4, 1, 1);
         setHalignment(testButton, HPos.CENTER);
+        setHalignment(resetLastTest, HPos.CENTER);
     }
 }

@@ -78,13 +78,11 @@ public class TestController {
     public DBController getDBController(){ return this.db;}
 
     public void finishTest() {
-
-
-
         this.stage.close();
 
         QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(this.db);
         CategoryOverviewPane categoryOverviewPane = new CategoryOverviewPane(this.db);
+        changeResultFormatPanel change = new changeResultFormatPanel(this.db);
         MessagePane m = new MessagePane(this, this.primaryStage, false);
         if(this.db.getProperty("evaluation.mode").equals("feedback")) {
             Label feedback = new Label(this.test.getFeedback());
@@ -112,12 +110,11 @@ public class TestController {
         }
 
         this.db.setProperty("test.completed", "true");
-        this.db.writeProperties();
 
         Group root = new Group();
         Scene scene = new Scene(root, 750, 400);
 
-        BorderPane borderPane = new AssesMainPane(m, categoryOverviewPane, questionOverviewPane);
+        BorderPane borderPane = new AssesMainPane(m, categoryOverviewPane, questionOverviewPane,change);
         borderPane.prefHeightProperty().bind(scene.heightProperty());
         borderPane.prefWidthProperty().bind(scene.widthProperty());
 

@@ -8,10 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import view.panels.AssesMainPane;
-import view.panels.CategoryOverviewPane;
-import view.panels.MessagePane;
-import view.panels.QuestionOverviewPane;
+import view.panels.*;
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -29,11 +26,11 @@ public class Main extends Application {
             QuestionOverviewPane questionOverviewPane = new QuestionOverviewPane(dbController);
             CategoryOverviewPane categoryOverviewPanel = new CategoryOverviewPane(dbController);
             MessagePane messagePane = new MessagePane(testController, primaryStage, true);
-
+            changeResultFormatPanel resultFormat = new changeResultFormatPanel(dbController);
             Group root = new Group();
             Scene scene = new Scene(root, 750, 400);
 
-            BorderPane borderPane = new AssesMainPane(messagePane, categoryOverviewPanel, questionOverviewPane);
+            BorderPane borderPane = new AssesMainPane(messagePane, categoryOverviewPanel, questionOverviewPane, resultFormat);
             borderPane.prefHeightProperty().bind(scene.heightProperty());
             borderPane.prefWidthProperty().bind(scene.widthProperty());
 
