@@ -41,13 +41,12 @@ public class PropertiesDB {
     public void read(){
         try {
             this.input = new FileInputStream("evaluation.properties");
-            System.out.println(this.input);
 
             // load a properties file
             this.prop.load(this.input);
 
             // get the property value and print it out
-            System.out.println(this.prop.getProperty("evaluation.mode"));
+            System.out.println("Evaluation mode: " + this.prop.getProperty("evaluation.mode"));
 
         } catch (IOException ex) {
             ex.printStackTrace();

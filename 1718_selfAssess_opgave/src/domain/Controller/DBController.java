@@ -3,7 +3,7 @@ package domain.Controller;
 import domain.Exceptions.DomainException;
 import domain.db.CategoryDB;
 import domain.db.PropertiesDB;
-import domain.db.QuestionDB;
+import domain.db.testStrategy.QuestionDB;
 import domain.model.Category;
 import domain.model.Question;
 import javafx.collections.ObservableList;
@@ -16,9 +16,9 @@ public class DBController {
     private PropertiesDB propertiesDB;
 
     public DBController() {
-        categorydb = new CategoryDB();
-        questiondb = new QuestionDB();
         propertiesDB = new PropertiesDB();
+        categorydb = new CategoryDB();
+        questiondb = new QuestionDB(this.getProperty("test.mode"));
     }
 
     @Override
