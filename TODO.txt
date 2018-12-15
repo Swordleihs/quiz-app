@@ -1,0 +1,18 @@
+PATTERNS:
+
+Strategy: V
+State: X -> excel input en txt input kan met states gebeuren: de opdracht vraagt dat input vanuit een excel file niet aanpasbaar is in de app, dus moet er een state zijn die bijhoudt vanwaar de input komt
+Observer: V
+Factory: X -> misschien mogelijk bij filereader
+Adapter: X
+Facade: X
+Decorator: X
+Template: X
+
+Andere Structuren:
+SOLID: V
+Enum: X
+Singleton: X
+Properties: V
+Class: X
+MVC: V
