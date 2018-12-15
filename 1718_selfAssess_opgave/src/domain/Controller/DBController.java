@@ -2,6 +2,7 @@ package domain.Controller;
 
 import domain.Exceptions.DomainException;
 import domain.db.CategoryDB;
+import domain.db.LastTestDB;
 import domain.db.PropertiesDB;
 import domain.db.testStrategy.QuestionDB;
 import domain.model.Category;
@@ -14,11 +15,13 @@ public class DBController {
     private CategoryDB categorydb;
     private QuestionDB questiondb;
     private PropertiesDB propertiesDB;
+    private LastTestDB lastTestdb;
 
     public DBController() {
         propertiesDB = new PropertiesDB();
         categorydb = new CategoryDB();
         questiondb = new QuestionDB(this.getProperty("test.mode"));
+        lastTestdb = new LastTestDB();
     }
 
     @Override
@@ -70,8 +73,13 @@ public class DBController {
             return c;
         }
     }
-
     public ArrayList<Question> getQuestions() {
         return questiondb.getAll();
+    }
+    public void writeLastTest(String s){
+        this.lastTestdb.write(s);
+    }
+    public String readLastTest(){
+        return this.lastTestdb.read();
     }
 }

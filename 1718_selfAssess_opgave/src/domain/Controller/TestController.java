@@ -78,15 +78,8 @@ public class TestController {
     public DBController getDBController(){ return this.db;}
 
     public void finishTest() {
-        Map<String, int[]> scores = test.getScores();
-        String allescores = "";
-        Iterator it = scores.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            String key = pair.getKey().toString();
-            int[] temp = (int[])pair.getValue();
-            allescores += key + ":  " + temp[0] + "/" + temp[1] + "\n";
-        }
+
+
 
         this.stage.close();
 
@@ -95,13 +88,31 @@ public class TestController {
         MessagePane m = new MessagePane(this, this.primaryStage, false);
         if(this.db.getProperty("evaluation.mode").equals("feedback")) {
             Label feedback = new Label(this.test.getFeedback());
-            m.add(feedback, 0, 0, 1, 1);
+            m.add(feedback, 0, 1, 1, 1);
+            this.db.writeLastTest(this.test.getFeedback());
         }else if(this.db.getProperty("evaluation.mode").equals("score")) {
+            Map<String, int[]> scores = test.getScores();
+            String allescores = "";
+            Iterator it = scores.entrySet().iterator();
+            int totaal = 0;
+            int totaalVerdiend = 0;
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry)it.next();
+                String key = pair.getKey().toString();
+                int[] temp = (int[])pair.getValue();
+                totaal += temp[1];
+                totaalVerdiend += temp[0];
+                allescores += key + ":  " + temp[0] + "/" + temp[1] + "\n";
+            }
+            allescores += "\nTotal score: " + totaalVerdiend + "/" + totaal;
+
             Label score = new Label(allescores);
-            m.add(score, 0, 3, 1, 1);
+            m.add(score, 0, 1, 1, 1);
+            this.db.writeLastTest(allescores);
         }
 
         this.db.setProperty("test.completed", "true");
+        this.db.writeProperties();
 
         Group root = new Group();
         Scene scene = new Scene(root, 750, 400);
@@ -115,8 +126,6 @@ public class TestController {
         this.primaryStage.setScene(scene);
         this.primaryStage.sizeToScene();
         this.primaryStage.show();
-
-        this.db.writeProperties();
     }
     public DBController getDB(){
         return this.db;

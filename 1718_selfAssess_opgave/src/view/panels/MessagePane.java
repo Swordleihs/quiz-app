@@ -13,7 +13,7 @@ public class MessagePane extends GridPane {
     private Button testButton;
     private TestController testController;
 
-    public MessagePane(TestController testController, Stage stagePrimary, boolean welcomeMessage) {
+    public MessagePane(TestController testController, Stage stagePrimary, boolean welcome) {
         this.testController = testController;
 
         setBorder(new Border(new BorderStroke(Color.BLACK,
@@ -22,10 +22,13 @@ public class MessagePane extends GridPane {
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
-
-        if(this.testController.getDB().getProperty("test.completed").equals("true")) {
-            Label testAlreadyDone = new Label("You have already finished this test");
-            this.add(testAlreadyDone, 0, 1, 1, 1);
+        if(welcome) {
+            Label testAlreadyDone = new Label("You never did this evaluation");
+            if (this.testController.getDB().getProperty("test.completed").equals("true")) {
+                testAlreadyDone.setText(
+                        "Your last results are: \n\n" +this.testController.getDB().readLastTest());
+            }
+            this.add(testAlreadyDone, 0, 0, 1, 1);
         }
 
         testButton = new Button("Evaluate");
