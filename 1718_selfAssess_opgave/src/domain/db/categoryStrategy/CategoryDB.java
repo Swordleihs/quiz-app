@@ -1,4 +1,4 @@
-package domain.db;
+package domain.db.categoryStrategy;
 
 import domain.Exceptions.dbException;
 import domain.model.Category;

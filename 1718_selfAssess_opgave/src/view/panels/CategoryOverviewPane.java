@@ -48,13 +48,12 @@ public class CategoryOverviewPane extends GridPane {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Category category = row.getItem();
-                    System.out.println(category.toString());
 
-                    EditCategoryDetailPane editCatPane = new EditCategoryDetailPane(dbController, category.getName(), category.getDescription(), category.getSupercategory(), category);
+                    EditCategoryDetailPane editCatPane = new EditCategoryDetailPane(dbController, category);
                     Stage addCatStage = new Stage();
 
                     Group root = new Group();
-                    Scene scene = new Scene(root, 300, 200);
+                    Scene scene = new Scene(root, 300, 150);
 
                     root.getChildren().add(editCatPane);
                     addCatStage.setScene(scene);

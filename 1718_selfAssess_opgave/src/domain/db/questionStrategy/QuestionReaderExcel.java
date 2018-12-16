@@ -1,4 +1,4 @@
-package domain.db.testStrategy;
+package domain.db.questionStrategy;
 
 import domain.Exceptions.dbException;
 import domain.model.Question;

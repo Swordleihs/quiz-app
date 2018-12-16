@@ -1,10 +1,9 @@
-package domain.db.testStrategy;
-
+package domain.db.questionStrategy;
 import domain.model.Question;
 import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
-public class QuestionDB extends QuestionReaderContext{
+public class QuestionDB extends QuestionContext {
     private ObservableList<Question> questions;
 
     public QuestionDB(String property) {
@@ -20,6 +19,11 @@ public class QuestionDB extends QuestionReaderContext{
             this.setQuestionReader(new QuestionReaderExcel());
             this.questions = this.performRead();
         }
+    }
+
+    public void updateFile(){
+        this.setQuestionWriter(new QuestionWriterTxt());
+        this.performWrite(this.questions);
     }
 
     @Override
@@ -46,5 +50,10 @@ public class QuestionDB extends QuestionReaderContext{
 
     public void addQuestion(String qu, String fe, String[] st, String ca, int po) {
         questions.add(new Question(qu, fe, st, ca, po));
+    }
+
+    public void replace(Question ogQuestion, Question newQuestion){
+        int i = this.questions.indexOf(ogQuestion);
+        this.questions.set(i, newQuestion);
     }
 }

@@ -13,7 +13,7 @@ public class EditCategoryDetailPane extends GridPane {
     private ComboBox categoryField;
     private DBController dbController;
 
-    public EditCategoryDetailPane(DBController dbController, String title, String description, String mainCat, Category cat){
+    public EditCategoryDetailPane(DBController dbController, Category cat){
         this.dbController = dbController;
 
         this.setPrefHeight(150);
@@ -24,23 +24,23 @@ public class EditCategoryDetailPane extends GridPane {
         this.setHgap(5);
 
         this.add(new Label("Title:"), 0, 0, 1, 1);
-        titleField = new TextField(title);
+        titleField = new TextField(cat.getName());
         this.add(titleField, 1, 0, 1, 1);
 
         this.add(new Label("Description:"), 0, 1, 1, 1);
-        descriptionField = new TextField(description);
+        descriptionField = new TextField(cat.getDescription());
         this.add(descriptionField, 1, 1, 1, 1);
 
         this.add(new Label("Main Category:"), 0, 2, 1, 1);
         categoryField = new ComboBox<>();
-        if(mainCat != null && !mainCat.equals("-")){
+        if(cat.getSupercategory() != null && !cat.getSupercategory().equals("-")){
             categoryField.getItems().add("Geen");
             for (Category category : dbController.getCategories()) {
                 if(!cat.getName().equals(category.getName())){
                     categoryField.getItems().add(category.getName());
                 }
             }
-            categoryField.setValue(mainCat);
+            categoryField.setValue(cat.getSupercategory());
         }else{
             categoryField.getItems().add("Geen");
             for (Category category : dbController.getCategories()) {
@@ -64,7 +64,7 @@ public class EditCategoryDetailPane extends GridPane {
         btnOK.isDefaultButton();
         btnOK.setOnAction((e) -> {
             try {
-                this.dbController.replaceCategory(cat, new Category(titleField.getText(), descriptionField.getText(), categoryField.getValue().toString()));
+                this.dbController.updateCategory(cat, new Category(titleField.getText(), descriptionField.getText(), categoryField.getValue().toString()));
                 titleField.setText("");
                 descriptionField.setText("");
             } catch (Exception ex) {

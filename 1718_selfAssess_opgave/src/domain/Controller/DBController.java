@@ -1,10 +1,10 @@
 package domain.Controller;
 
 import domain.Exceptions.DomainException;
-import domain.db.CategoryDB;
+import domain.db.categoryStrategy.CategoryDB;
 import domain.db.LastTestDB;
 import domain.db.PropertiesDB;
-import domain.db.testStrategy.QuestionDB;
+import domain.db.questionStrategy.QuestionDB;
 import domain.model.Category;
 import domain.model.Question;
 import javafx.collections.ObservableList;
@@ -53,12 +53,17 @@ public class DBController {
         categorydb.addCategory(name, description, superr);
     }
 
-    public void replaceCategory(Category ogCategory, Category newCategory){
+    public void updateCategory(Category ogCategory, Category newCategory){
         this.categorydb.replace(ogCategory, newCategory);
     }
 
     public void addQuestion(String qu, String fe, String[] st, String ca, int po) {
         questiondb.addQuestion(qu, fe, st, ca, po);
+    }
+
+    public void updateQuestion(Question ogQuestion, Question newQuestion){
+        this.questiondb.replace(ogQuestion, newQuestion);
+        this.questiondb.updateFile();
     }
 
     public ArrayList<Category> getCategories() {

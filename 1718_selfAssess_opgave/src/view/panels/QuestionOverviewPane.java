@@ -1,15 +1,14 @@
 package view.panels;
 
 import domain.Controller.DBController;
+import domain.model.Category;
+import domain.model.Question;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -41,6 +40,27 @@ public class QuestionOverviewPane extends GridPane {
         table.getColumns().add(pointsCol);
         this.add(table, 0, 1, 2, 6);
         table.setItems(dbController.getQuestionsObservable());
+
+        table.setRowFactory( tv -> {
+            TableRow<Question> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Question question = row.getItem();
+
+                    EditQuestionDetailPane editQuesPane = new EditQuestionDetailPane(dbController, question);
+                    Stage addQuesStage = new Stage();
+
+                    Group root = new Group();
+                    Scene scene = new Scene(root, 340, 320);
+
+                    root.getChildren().add(editQuesPane);
+                    addQuesStage.setScene(scene);
+                    addQuesStage.sizeToScene();
+                    addQuesStage.show();
+                }
+            });
+            return row ;
+        });
 
         btnNew = new Button("New");
         btnNew.setOnAction(e -> {
