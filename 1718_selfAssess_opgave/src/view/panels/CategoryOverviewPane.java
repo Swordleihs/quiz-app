@@ -43,22 +43,6 @@ public class CategoryOverviewPane extends GridPane {
         superCol.setCellValueFactory(new PropertyValueFactory<>("supercategory"));
         table.getColumns().add(superCol);
 
-
-        /*
-        table.setOnMouseClicked(e -> {
-            EditCategoryDetailPane editCatPane = new EditCategoryDetailPane(dbController, table.);
-            Stage addCatStage = new Stage();
-
-            Group root = new Group();
-            Scene scene = new Scene(root, 300, 200);
-
-            root.getChildren().add(editCatPane);
-            addCatStage.setScene(scene);
-            addCatStage.sizeToScene();
-            addCatStage.show();
-        });
-        */
-
         table.setRowFactory( tv -> {
             TableRow<Category> row = new TableRow<>();
             row.setOnMouseClicked(event -> {

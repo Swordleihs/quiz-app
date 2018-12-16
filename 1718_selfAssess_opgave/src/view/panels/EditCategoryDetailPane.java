@@ -36,19 +36,19 @@ public class EditCategoryDetailPane extends GridPane {
         if(mainCat != null && !mainCat.equals("-")){
             categoryField.getItems().add("Geen");
             for (Category category : dbController.getCategories()) {
-                categoryField.getItems().add(category.getName());
+                if(!cat.getName().equals(category.getName())){
+                    categoryField.getItems().add(category.getName());
+                }
             }
             categoryField.setValue(mainCat);
         }else{
             categoryField.getItems().add("Geen");
             for (Category category : dbController.getCategories()) {
-                categoryField.getItems().add(category.getName());
+                if(!cat.getName().equals(category.getName())) {
+                    categoryField.getItems().add(category.getName());
+                }
             }
             categoryField.setValue("Geen");
-        }
-
-        for (Category category : dbController.getCategories()) {
-            categoryField.getItems().add(category.getName());
         }
 
         this.add(categoryField, 1, 2, 1, 1);
