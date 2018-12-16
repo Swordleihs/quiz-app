@@ -7,10 +7,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -47,6 +44,43 @@ public class CategoryOverviewPane extends GridPane {
         table.getColumns().add(superCol);
 
 
+        /*
+        table.setOnMouseClicked(e -> {
+            EditCategoryDetailPane editCatPane = new EditCategoryDetailPane(dbController, table.);
+            Stage addCatStage = new Stage();
+
+            Group root = new Group();
+            Scene scene = new Scene(root, 300, 200);
+
+            root.getChildren().add(editCatPane);
+            addCatStage.setScene(scene);
+            addCatStage.sizeToScene();
+            addCatStage.show();
+        });
+        */
+
+        table.setRowFactory( tv -> {
+            TableRow<Category> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Category category = row.getItem();
+                    System.out.println(category.toString());
+
+                    EditCategoryDetailPane editCatPane = new EditCategoryDetailPane(dbController, category.getName(), category.getDescription(), category.getSupercategory(), category);
+                    Stage addCatStage = new Stage();
+
+                    Group root = new Group();
+                    Scene scene = new Scene(root, 300, 200);
+
+                    root.getChildren().add(editCatPane);
+                    addCatStage.setScene(scene);
+                    addCatStage.sizeToScene();
+                    addCatStage.show();
+                }
+            });
+            return row ;
+        });
+
         this.add(table, 0, 2, 2, 6);
         table.setItems(dbController.getCategoriesObservable());
 
@@ -64,6 +98,9 @@ public class CategoryOverviewPane extends GridPane {
             addCatStage.show();
         });
         this.add(btnNew, 0, 12, 1, 1);
+
+
+
     }
 
     public void setNewAction(EventHandler<ActionEvent> newAction) {

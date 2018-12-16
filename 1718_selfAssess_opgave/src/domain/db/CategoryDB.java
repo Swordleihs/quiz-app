@@ -75,5 +75,10 @@ public class CategoryDB {
         }
     }
 
+    public void replace(Category ogCategory, Category newCategory){
+        int i = this.categories.indexOf(ogCategory);
+        this.categories.set(i, newCategory);
+    }
+
 
 }

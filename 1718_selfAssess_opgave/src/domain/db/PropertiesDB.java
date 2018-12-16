@@ -20,7 +20,7 @@ public class PropertiesDB {
         try {
             output = new FileOutputStream("evaluation.properties");
             // set the properties value
-            prop.setProperty("test.completed", "true");
+            //prop.setProperty(property, value);
             // save properties to project root folder
             prop.store(output, null);
 

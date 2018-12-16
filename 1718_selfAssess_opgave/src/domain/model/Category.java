@@ -53,4 +53,9 @@ public class Category {
         }
         this.supercategory = s;
     }
+
+    @Override
+    public String toString(){
+        return "Category: name:" + this.getName() + " | description:" + this.getDescription() + " | superCategory:" + this.getSupercategory();
+    }
 }

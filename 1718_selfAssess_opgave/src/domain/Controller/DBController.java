@@ -36,7 +36,7 @@ public class DBController {
     }
     public void setProperty(String name, String value){
         propertiesDB.getProperties().setProperty(name, value);
-        writeProperties();
+        this.writeProperties();
     }
     private void writeProperties(){
         this.propertiesDB.write();
@@ -51,6 +51,10 @@ public class DBController {
 
     public void addCategory(String name, String description, String superr) {
         categorydb.addCategory(name, description, superr);
+    }
+
+    public void replaceCategory(Category ogCategory, Category newCategory){
+        this.categorydb.replace(ogCategory, newCategory);
     }
 
     public void addQuestion(String qu, String fe, String[] st, String ca, int po) {
