@@ -1,51 +1,24 @@
 package domain.db.categoryStrategy;
 
-import domain.Exceptions.dbException;
 import domain.model.Category;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class CategoryDB {
+public class CategoryDB extends CategoryContext{
     private ObservableList<Category> categories;
-    private File f;
 
-    public CategoryDB() {
-        categories = FXCollections.observableArrayList(new ArrayList<Category>());
-        f = new File("Categories.txt");
-        if (f.isDirectory() || !f.exists()) {
-            throw new dbException("File niet gevonden");
-        }
-        fill();
+    public CategoryDB(String property) {
+        this.setCategoryWriter(new CategoryWriterTxt());
+        this.fill(property);
     }
 
-    private void fill() {
-        try {
-            Scanner scan = new Scanner(f, "UTF-8");
-            while (scan.hasNextLine()) {
-                Scanner line = new Scanner(scan.nextLine());
-                line.useDelimiter(";");
-                String cat = line.next();
-                String desc = line.next();
-                String sup = "";
-                if (line.hasNext()) {
-                    sup = line.next();
-                }
-                if (sup.equals("")) {
-                    Category category = new Category(cat, desc);
-                    categories.add(category);
-                    System.out.println(cat + " added without sup");
-                } else {
-                    Category category = new Category(cat, desc, sup);
-                    categories.add(category);
-                    System.out.println(cat + " added with sup");
-                }
-            }
-        } catch (Exception e) {
-            throw new dbException("Fout bij inlezen bestand");
+    private void fill(String property) {
+        if (property.equals("txt")){
+            this.setCategoryReader(new CategoryReaderTxt());
+            this.categories = this.performRead();
+        }else if (property.equals("excel")){
+            this.setCategoryReader(new CategoryReaderExcel());
+            this.categories = this.performRead();
         }
     }
 
@@ -73,11 +46,16 @@ public class CategoryDB {
         } else {
             categories.add(new Category(name, desc, superr));
         }
+        this.updateFile();
     }
 
     public void replace(Category ogCategory, Category newCategory){
         int i = this.categories.indexOf(ogCategory);
         this.categories.set(i, newCategory);
+    }
+
+    public void updateFile(){
+        this.performWrite(this.categories);
     }
 
 

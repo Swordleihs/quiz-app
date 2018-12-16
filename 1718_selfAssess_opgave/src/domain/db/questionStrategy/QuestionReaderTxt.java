@@ -4,7 +4,6 @@ import domain.Exceptions.dbException;
 import domain.model.Question;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;

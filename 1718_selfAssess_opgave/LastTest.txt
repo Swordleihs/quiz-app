@@ -1,5 +1,5 @@
 UML:  0/3
 Java extra's:  0/10
-Overig:  7/8
+Overig:  5/8
 
-Total score: 7/21
+Total score: 5/21

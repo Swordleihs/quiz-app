@@ -7,6 +7,7 @@ public class QuestionDB extends QuestionContext {
     private ObservableList<Question> questions;
 
     public QuestionDB(String property) {
+        this.setQuestionWriter(new QuestionWriterTxt());
         this.fill(property);
     }
 
@@ -22,7 +23,6 @@ public class QuestionDB extends QuestionContext {
     }
 
     public void updateFile(){
-        this.setQuestionWriter(new QuestionWriterTxt());
         this.performWrite(this.questions);
     }
 
@@ -50,6 +50,7 @@ public class QuestionDB extends QuestionContext {
 
     public void addQuestion(String qu, String fe, String[] st, String ca, int po) {
         questions.add(new Question(qu, fe, st, ca, po));
+        this.updateFile();
     }
 
     public void replace(Question ogQuestion, Question newQuestion){

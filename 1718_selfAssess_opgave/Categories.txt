@@ -1,5 +1,6 @@
-Ontwerp principes;Description blabla
-Ontwerp patronen;Description bloebloe
-UML;Descripion klakla
+Ontwerp principes;Description blabla;-
+Ontwerp patronen;Description bloebloe;-
+UML;Descripion klakla;-
 Java extra's;Carla kaka;Ontwerp principes
-Overig;Dat is wat backy wil!
+Overig;Dat is wat backy wil!;-
+MijnVervaardig;spelletje;-

@@ -19,7 +19,7 @@ public class DBController {
 
     public DBController() {
         propertiesDB = new PropertiesDB();
-        categorydb = new CategoryDB();
+        categorydb = new CategoryDB(this.getProperty("test.mode"));
         questiondb = new QuestionDB(this.getProperty("test.mode"));
         lastTestdb = new LastTestDB();
     }

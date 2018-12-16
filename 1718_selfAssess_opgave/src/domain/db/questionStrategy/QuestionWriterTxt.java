@@ -29,7 +29,7 @@ public class QuestionWriterTxt implements QuestionWriter {
             Path file = Paths.get("Questions.txt");
             Files.write(file, questionsList, Charset.forName("UTF-8"));
         }catch(Exception e){
-            throw new dbException("An error occured when trying to write to a file.");
+            throw new dbException("An error occurred when trying to write to a file.");
         }
 
     }
