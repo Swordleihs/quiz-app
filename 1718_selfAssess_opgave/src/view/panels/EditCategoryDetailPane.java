@@ -64,7 +64,11 @@ public class EditCategoryDetailPane extends GridPane {
         btnOK.isDefaultButton();
         btnOK.setOnAction((e) -> {
             try {
-                this.dbController.updateCategory(cat, new Category(titleField.getText(), descriptionField.getText(), categoryField.getValue().toString()));
+                if(categoryField.getValue().toString().equals("Geen")){
+                    this.dbController.updateCategory(cat, new Category(titleField.getText(), descriptionField.getText()));
+                }else {
+                    this.dbController.updateCategory(cat, new Category(titleField.getText(), descriptionField.getText(), categoryField.getValue().toString()));
+                }
                 titleField.setText("");
                 descriptionField.setText("");
             } catch (Exception ex) {

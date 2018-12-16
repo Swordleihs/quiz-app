@@ -1,6 +1,7 @@
-Ontwerp principes;Description blabla;-
+Ontwerp principes;Description blablabla;-
 Ontwerp patronen;Description bloebloe;-
 UML;Descripion klakla;-
 Java extra's;Carla kaka;Ontwerp principes
 Overig;Dat is wat backy wil!;-
 MijnVervaardig;spelletje;-
+Irrelevant;Heeft niks met de les te maken;Overig

@@ -55,6 +55,7 @@ public class DBController {
 
     public void updateCategory(Category ogCategory, Category newCategory){
         this.categorydb.replace(ogCategory, newCategory);
+        this.categorydb.updateFile();
     }
 
     public void addQuestion(String qu, String fe, String[] st, String ca, int po) {
