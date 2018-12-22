@@ -1,20 +1,25 @@
 package domain.db.categoryStrategy;
 
+import domain.Exceptions.DomainException;
 import domain.Exceptions.dbException;
 import domain.model.Category;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sun.plugin2.ipc.unix.DomainSocketNamedPipe;
+
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CategoryReaderTxt implements CategoryReader {
 
     @Override
-    public File getFile() {
-        File file = new File("Categories.txt");
-        if (file.isDirectory() || !file.exists()) {
-            throw new dbException("txt file not found.");
+    public InputStream getFile() {
+        InputStream file = getClass().getClassLoader().getResourceAsStream(
+                "domain/db/categoryStrategy/Categories.txt");
+        if (file == null){
+            throw new DomainException("foutje bij het lezen van file");
         }
         return file;
     }
@@ -22,7 +27,7 @@ public class CategoryReaderTxt implements CategoryReader {
     @Override
     public ObservableList<Category> read() {
         ObservableList<Category> categories = FXCollections.observableArrayList(new ArrayList<>());
-        File file = this.getFile();
+        InputStream file = this.getFile();
 
         try {
             Scanner scan = new Scanner(file, "UTF-8");

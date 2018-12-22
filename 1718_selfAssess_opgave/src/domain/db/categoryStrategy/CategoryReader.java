@@ -4,10 +4,11 @@ import domain.model.Category;
 import javafx.collections.ObservableList;
 
 import java.io.File;
+import java.io.InputStream;
 
 public interface CategoryReader {
 
-    File getFile();
+    InputStream getFile();
 
     ObservableList<Category> read();
 }

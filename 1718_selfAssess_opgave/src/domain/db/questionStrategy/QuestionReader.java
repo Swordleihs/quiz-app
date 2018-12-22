@@ -4,10 +4,11 @@ import domain.model.Question;
 import javafx.collections.ObservableList;
 
 import java.io.File;
+import java.io.InputStream;
 
 public interface QuestionReader {
 
-    File getFile();
+    InputStream getFile();
 
     ObservableList<Question> read();
 

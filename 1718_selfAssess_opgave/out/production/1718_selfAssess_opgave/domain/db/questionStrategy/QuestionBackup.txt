@@ -1,0 +1,5 @@
+Hoeveel km past er in 1 mijl? (1 cijfer na de komma);1,6:1,5:1,3:1,9;Overig;In 1 mijl passen er 1.6039 kilometers;2
+Welke java versie gebruikt Arne?;Geen idee:9:8:10:v2.36.3:11;Java extra's;Top 10 questions science still isn't able to answer, echt niemand weet het g;10
+Hoeveel is 1+1;2:11:5:6:3;Overig;leert u wiskunde eh makker. TWEE;1
+Welk deuren fabrikant is het beste?;Swordleihs Deur corp.:Stijn Deuren Companie;Overig;Ruben denkt dat zijn deur corp het best is, ik heb er geen goede ervaringen mee tho, eej da heb ik gezien he;5
+Wil Ruben onder de trein springen om de pijn te doen stoppen?;Ja:Nee:Zeg ik liever niet;UML;Het antwoord is vrij duidelijk, allez zijn levenslust is ver te zoeken bijvoorbeeld.;3

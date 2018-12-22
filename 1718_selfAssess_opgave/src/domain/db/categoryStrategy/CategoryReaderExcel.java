@@ -5,11 +5,12 @@ import domain.model.Category;
 import javafx.collections.ObservableList;
 
 import java.io.File;
+import java.io.InputStream;
 
 public class CategoryReaderExcel implements CategoryReader {
     @Override
-    public File getFile() {
-        File file = new File("Categories.xls");
+    public InputStream getFile() {
+        /*File file = new File("Categories.xls");
         if (file.isDirectory() || !file.exists()) {
             File file2 = new File("categories.xlsx");
             if (file2.isDirectory() || !file2.exists()) {
@@ -18,6 +19,8 @@ public class CategoryReaderExcel implements CategoryReader {
             return file2;
         }
         return file;
+        */
+        return null;
     }
 
     @Override

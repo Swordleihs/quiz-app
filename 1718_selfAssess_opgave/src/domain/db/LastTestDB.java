@@ -1,23 +1,26 @@
 package domain.db;
 
+import domain.Exceptions.DomainException;
 import domain.Exceptions.dbException;
 import sun.misc.IOUtils;
 
 import java.io.*;
 
 public class LastTestDB {
-    private File f;
+    private InputStream f;
 
     public LastTestDB(){
-        f = new File("LastTest.txt");
-        if (f.isDirectory() || !f.exists()) {
-            throw new dbException("File niet gevonden");
+        f = getClass().getClassLoader().getResourceAsStream(
+                "domain/db/LastTest.txt");
+        if (f == null){
+            throw new DomainException("foutje bij het lezen van file");
         }
     }
     public String read(){
         String result = "";
         try{
-            BufferedReader br = new BufferedReader(new FileReader("LastTest.txt"));
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(f));
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
 

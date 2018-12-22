@@ -24,7 +24,7 @@ public class CategoryWriterTxt implements CategoryWriter{
                 categoriesList.add(listItem);
             }
 
-            Path file = Paths.get("Categories.txt");
+            Path file = Paths.get("domain/db/categoryStrategy/Categories.txt");
             Files.write(file, categoriesList, Charset.forName("UTF-8"));
         }catch(Exception e){
             throw new dbException("An error occurred when trying to write to a file.");

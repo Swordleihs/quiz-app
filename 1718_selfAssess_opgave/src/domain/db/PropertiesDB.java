@@ -18,7 +18,7 @@ public class PropertiesDB {
 
     public void write(){
         try {
-            output = new FileOutputStream("evaluation.properties");
+            output = new FileOutputStream("/domain/db/evaluation.properties");
             // set the properties value
             //prop.setProperty(property, value);
             // save properties to project root folder
@@ -39,7 +39,7 @@ public class PropertiesDB {
 
     public void read(){
         try {
-            this.input = new FileInputStream("evaluation.properties");
+            this.input = this.getClass().getClassLoader().getResourceAsStream("domain/db/evaluation.properties");
 
             // load a properties file
             this.prop.load(this.input);
