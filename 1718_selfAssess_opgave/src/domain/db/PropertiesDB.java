@@ -1,6 +1,10 @@
 package domain.db;
 
+import domain.Exceptions.DomainException;
+
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class PropertiesDB {
@@ -18,10 +22,7 @@ public class PropertiesDB {
 
     public void write(){
         try {
-            output = new FileOutputStream("/domain/db/evaluation.properties");
-            // set the properties value
-            //prop.setProperty(property, value);
-            // save properties to project root folder
+            output = new FileOutputStream("evaluation.properties");
             prop.store(output, null);
 
         } catch (IOException io) {
@@ -39,8 +40,12 @@ public class PropertiesDB {
 
     public void read(){
         try {
-            this.input = this.getClass().getClassLoader().getResourceAsStream("domain/db/evaluation.properties");
-
+            this.input = this.getClass().getClassLoader().getResourceAsStream
+                    ("domain/db/evaluation.properties");
+            File file = new File("evaluation.properties");
+            if(file.exists() && !file.isDirectory()){
+                this.input = new FileInputStream(file);
+            }
             // load a properties file
             this.prop.load(this.input);
 

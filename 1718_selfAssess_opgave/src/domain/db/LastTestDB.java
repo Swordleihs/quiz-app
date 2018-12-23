@@ -15,6 +15,14 @@ public class LastTestDB {
         if (f == null){
             throw new DomainException("foutje bij het lezen van file");
         }
+        File file = new File("LastTest.txt");
+        try {
+            if (file.exists() && !file.isDirectory()) {
+                f = new FileInputStream(file);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
     public String read(){
         String result = "";

@@ -6,6 +6,7 @@ import domain.model.Question;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,12 +16,20 @@ public class QuestionReaderTxt implements QuestionReader{
 
     @Override
     public InputStream getFile() {
-        InputStream file = getClass().getClassLoader().getResourceAsStream(
+        InputStream f = getClass().getClassLoader().getResourceAsStream(
                 "domain/db/questionStrategy/Questions.txt");
-        if (file == null){
+        if (f == null){
             throw new DomainException("foutje bij het lezen van file");
         }
-        return file;
+        File file = new File("Questions.txt");
+        try {
+            if (file.exists() && !file.isDirectory()) {
+                f = new FileInputStream(file);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return f;
     }
 
     @Override

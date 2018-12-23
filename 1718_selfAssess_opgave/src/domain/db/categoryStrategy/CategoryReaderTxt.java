@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import sun.plugin2.ipc.unix.DomainSocketNamedPipe;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,12 +17,20 @@ public class CategoryReaderTxt implements CategoryReader {
 
     @Override
     public InputStream getFile() {
-        InputStream file = getClass().getClassLoader().getResourceAsStream(
+        InputStream f = getClass().getClassLoader().getResourceAsStream(
                 "domain/db/categoryStrategy/Categories.txt");
-        if (file == null){
+        File file = new File("Categories.txt");
+        try {
+            if (file.exists() && !file.isDirectory()) {
+                f = new FileInputStream(file);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if (f == null){
             throw new DomainException("foutje bij het lezen van file");
         }
-        return file;
+        return f;
     }
 
     @Override
